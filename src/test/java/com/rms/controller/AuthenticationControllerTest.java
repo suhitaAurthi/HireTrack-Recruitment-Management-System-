@@ -2,11 +2,14 @@ package com.rms.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rms.config.SecurityConfig;
+import com.rms.dto.LoginRequestDto;
 import com.rms.dto.RegisterRequestDto;
 import com.rms.dto.UserResponseDto;
 import com.rms.exception.DuplicateResourceException;
 import com.rms.exception.GlobalExceptionHandler;
 import com.rms.service.AuthService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
@@ -21,6 +25,7 @@ import java.util.Set;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -109,5 +114,36 @@ class AuthenticationControllerTest {
                 .andExpect(status().isConflict())
                 .andExpect(jsonPath("$.error").value("Conflict"))
                 .andExpect(jsonPath("$.message").value("Username 'existing_user' is already taken"));
+    }
+
+    @Test
+    @DisplayName("POST /api/auth/login - Should return 200 OK with user details on successful login")
+    void shouldReturn200OnSuccessfulLogin() throws Exception {
+        LoginRequestDto loginRequest = new LoginRequestDto("john_doe", "password123");
+        UserResponseDto response = UserResponseDto.builder()
+                .id(1L)
+                .username("john_doe")
+                .email("john@example.com")
+                .roles(Set.of("ROLE_CANDIDATE"))
+                .enabled(true)
+                .build();
+
+        when(authService.login(any(LoginRequestDto.class), any(HttpServletRequest.class), any(HttpServletResponse.class)))
+                .thenReturn(response);
+
+        mockMvc.perform(post("/api/auth/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(loginRequest)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.username").value("john_doe"))
+                .andExpect(jsonPath("$.roles[0]").value("ROLE_CANDIDATE"));
+    }
+
+    @Test
+    @DisplayName("POST /api/auth/logout - Should clear session and return 200 OK")
+    void shouldReturn200OnLogout() throws Exception {
+        mockMvc.perform(post("/api/auth/logout"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message").value("Logged out successfully"));
     }
 }
