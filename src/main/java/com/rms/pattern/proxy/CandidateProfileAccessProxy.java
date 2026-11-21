@@ -15,11 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- * Proxy Pattern: Protection & Audit Proxy
- * Sits in front of CandidateProfileServiceImpl.
- * Enforces authorization checks and logs access to sensitive candidate personal data.
- */
+import java.util.List;
+
 @Service
 @Primary
 public class CandidateProfileAccessProxy implements CandidateProfileService {
@@ -50,6 +47,26 @@ public class CandidateProfileAccessProxy implements CandidateProfileService {
     }
 
     @Override
+    public List<CandidateProfileResponseDto> getAllProfiles() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated()) {
+            throw new AccessDeniedException("Authentication required to browse candidate directory");
+        }
+
+        boolean isPrivileged = auth.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(r -> r.equals("ROLE_ADMIN") || r.equals("ROLE_RECRUITER"));
+
+        if (!isPrivileged) {
+            log.warn("Security Alert: Candidate [{}] attempted unauthorized directory browse", auth.getName());
+            throw new AccessDeniedException("Candidates are not permitted to browse the talent directory");
+        }
+
+        log.info("Audit: Recruiter/Admin [{}] browsed candidate directory", getPrincipalName());
+        return realService.getAllProfiles();
+    }
+
+    @Override
     public CandidateProfileResponseDto uploadResume(MultipartFile file) {
         log.info("Audit: Candidate [{}] uploading resume: {}", getPrincipalName(), file.getOriginalFilename());
         return realService.uploadResume(file);
@@ -73,7 +90,6 @@ public class CandidateProfileAccessProxy implements CandidateProfileService {
                 .anyMatch(r -> r.equals("ROLE_ADMIN") || r.equals("ROLE_RECRUITER"));
 
         if (!isPrivileged) {
-            // Candidates can only view their own profile/resume
             CandidateProfileResponseDto myProfile = realService.getMyProfile();
             if (myProfile == null || !myProfile.getId().equals(profileId)) {
                 log.warn("Security Alert: User [{}] attempted unauthorized {} on profile [{}]", auth.getName(), action, profileId);

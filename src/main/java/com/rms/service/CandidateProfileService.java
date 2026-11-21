@@ -5,6 +5,8 @@ import com.rms.dto.CandidateProfileResponseDto;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 public interface CandidateProfileService {
 
     CandidateProfileResponseDto createOrUpdateProfile(CandidateProfileRequestDto request);
@@ -12,6 +14,8 @@ public interface CandidateProfileService {
     CandidateProfileResponseDto getMyProfile();
 
     CandidateProfileResponseDto getProfileById(Long profileId);
+
+    List<CandidateProfileResponseDto> getAllProfiles();
 
     CandidateProfileResponseDto uploadResume(MultipartFile file);
 

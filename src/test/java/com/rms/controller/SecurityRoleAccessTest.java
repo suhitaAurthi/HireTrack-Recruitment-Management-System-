@@ -71,4 +71,12 @@ class SecurityRoleAccessTest {
         mockMvc.perform(get("/api/candidate/applications"))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    @WithMockUser(roles = "RECRUITER")
+    @DisplayName("Recruiter accessing /api/candidate/** should return 200 OK")
+    void shouldReturn200WhenRecruiterAccessesCandidateEndpoint() throws Exception {
+        mockMvc.perform(get("/api/candidate/applications"))
+                .andExpect(status().isOk());
+    }
 }

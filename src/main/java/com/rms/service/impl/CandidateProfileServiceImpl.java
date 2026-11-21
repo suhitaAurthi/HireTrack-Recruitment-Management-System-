@@ -20,13 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Core Candidate Profile Service (Real Subject)
- * Implements business operations using Flyweight for skills and Adapter for resume storage.
- */
 @Service("candidateProfileServiceImpl")
 @RequiredArgsConstructor
 public class CandidateProfileServiceImpl implements CandidateProfileService {
@@ -54,7 +51,6 @@ public class CandidateProfileServiceImpl implements CandidateProfileService {
         profile.setEducation(request.getEducation());
         profile.setExperience(request.getExperience());
 
-        // Apply Flyweight pattern: normalize and pool skill strings
         if (request.getSkills() != null) {
             Set<String> normalizedSkills = request.getSkills().stream()
                     .filter(s -> s != null && !s.trim().isEmpty())
@@ -85,6 +81,14 @@ public class CandidateProfileServiceImpl implements CandidateProfileService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<CandidateProfileResponseDto> getAllProfiles() {
+        return profileRepository.findAll().stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     @Transactional
     public CandidateProfileResponseDto uploadResume(MultipartFile file) {
         User currentUser = getCurrentAuthenticatedUser();
@@ -95,12 +99,10 @@ public class CandidateProfileServiceImpl implements CandidateProfileService {
                         .skills(new HashSet<>())
                         .build());
 
-        // Delete old resume if present via Adapter
         if (profile.getResumeUrl() != null) {
             resumeStorageAdapter.deleteResume(profile.getResumeUrl());
         }
 
-        // Store new resume via Adapter
         String storedPath = resumeStorageAdapter.storeResume(file, currentUser.getUsername());
         profile.setResumeUrl(storedPath);
         profile.setResumeFileName(file.getOriginalFilename());

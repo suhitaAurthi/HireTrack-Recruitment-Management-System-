@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - HireTrack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --slate-900: #0f172a;
+            --slate-700: #334155;
+            --slate-500: #64748b;
+            --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            --emerald-600: #059669;
+            --emerald-50: #ecfdf5;
+            --rose-600: #e11d48;
+            --rose-50: #fff1f2;
+            --border-radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--slate-50);
+            color: var(--slate-900);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--slate-900);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .brand-badge {
+            width: 32px;
+            height: 32px;
+            background: var(--slate-900);
+            color: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        .auth-card {
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--slate-900);
+            letter-spacing: -0.01em;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+        }
+
+        .form-group.col-span-2 {
+            grid-column: span 2;
+        }
+
+        label {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--slate-700);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.625rem 0.875rem;
+            font-size: 0.9375rem;
+            color: var(--slate-900);
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            border-radius: var(--border-radius);
+            transition: all 0.15s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.6875rem 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.75rem;
+            transition: background 0.15s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        .banner {
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            display: none;
+        }
+
+        .banner-error {
+            background: var(--rose-50);
+            border: 1px solid #fecdd3;
+            color: var(--rose-600);
+        }
+
+        .banner-success {
+            background: var(--emerald-50);
+            border: 1px solid #bbf7d0;
+            color: var(--emerald-600);
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.8125rem;
+            color: var(--slate-500);
+        }
+
+        .auth-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .spinner {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 2px solid white;
+            width: 14px;
+            height: 14px;
+            animation: spin 0.6s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.col-span-2 {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-container">
+        <div class="brand-header">
+            <a href="/login.html" class="brand-logo">
+                <div class="brand-badge">H</div>
+                <span>HireTrack</span>
+            </a>
+            <p style="color: var(--slate-500); font-size: 0.875rem; margin-top: 0.5rem;">Join the recruitment platform</p>
+        </div>
+
+        <div class="auth-card">
+            <div id="bannerBox" class="banner"></div>
+
+            <h1 class="form-title">Create your HireTrack account</h1>
+
+            <form id="registerForm" onsubmit="handleRegister(e)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName">First name *</label>
+                        <input type="text" id="firstName" required placeholder="Sarah">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last name *</label>
+                        <input type="text" id="lastName" required placeholder="Connor">
+                    </div>
+                    <div class="form-group col-span-2">
+                        <label for="username">Username *</label>
+                        <input type="text" id="username" required placeholder="e.g. sarah_connor">
+                    </div>
+                    <div class="form-group col-span-2">
+                        <label for="email">Work or personal email *</label>
+                        <input type="email" id="email" required placeholder="sarah@example.com">
+                    </div>
+                    <div class="form-group col-span-2">
+                        <label for="password">Password (min 6 characters) *</label>
+                        <input type="password" id="password" required placeholder="••••••••">
+                    </div>
+                    <div class="form-group col-span-2">
+                        <label for="role">Role *</label>
+                        <select id="role">
+                            <option value="ROLE_CANDIDATE">Candidate (Applying for jobs)</option>
+                            <option value="ROLE_RECRUITER">Recruiter (Posting vacancies & evaluating)</option>
+                            <option value="ROLE_ADMIN">Administrator</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-span-2">
+                        <button type="submit" id="btnSubmit" class="btn-submit">
+                            <span id="btnText">Create account</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="auth-footer">
+            Already have an account? <a href="/login.html">Sign in</a>
+        </div>
+    </div>
+
+    <script>
+        async function handleRegister(e) {
+            if (e) e.preventDefault();
+            const btn = document.getElementById('btnSubmit');
+            const btnText = document.getElementById('btnText');
+            const banner = document.getElementById('bannerBox');
+
+            banner.style.display = 'none';
+            btn.disabled = true;
+            btnText.innerHTML = '<span class="spinner"></span>';
+
+            const payload = {
+                firstName: document.getElementById('firstName').value.trim(),
+                lastName: document.getElementById('lastName').value.trim(),
+                username: document.getElementById('username').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                password: document.getElementById('password').value,
+                role: document.getElementById('role').value
+            };
+
+            try {
+                const res = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    banner.className = 'banner banner-success';
+                    banner.textContent = 'Account created successfully! Redirecting to sign in...';
+                    banner.style.display = 'block';
+                    setTimeout(() => {
+                        window.location.href = '/login.html';
+                    }, 1200);
+                } else {
+                    const data = await res.json().catch(() => ({}));
+                    const msg = data.message || (data.errors ? Object.values(data.errors).join(', ') : 'Registration failed.');
+                    banner.className = 'banner banner-error';
+                    banner.textContent = msg;
+                    banner.style.display = 'block';
+                    btn.disabled = false;
+                    btnText.textContent = 'Create account';
+                }
+            } catch (err) {
+                banner.className = 'banner banner-error';
+                banner.textContent = 'Network error. Please verify the backend is running.';
+                banner.style.display = 'block';
+                btn.disabled = false;
+                btnText.textContent = 'Create account';
+            }
+        }
+        document.getElementById('registerForm').addEventListener('submit', handleRegister);
+    </script>
+</body>
+</html>

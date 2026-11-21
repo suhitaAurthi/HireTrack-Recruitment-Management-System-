@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HireTrack - Workspace & Talent Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --slate-500: #64748b;
+            --slate-400: #94a3b8;
+            --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            --emerald-600: #059669;
+            --emerald-50: #ecfdf5;
+            --rose-600: #e11d48;
+            --rose-50: #fff1f2;
+            --indigo-600: #4f46e5;
+            --indigo-50: #eef2ff;
+            --radius: 10px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #fbfcfd;
+            background-image: radial-gradient(#e2e8f0 0.75px, transparent 0.75px);
+            background-size: 24px 24px;
+            color: var(--slate-900);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.5;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-content {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--slate-900);
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: -0.025em;
+        }
+
+        .brand-logo-sq {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 800;
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.15);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .user-identity {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
+            color: var(--slate-700);
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-weight: 500;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        }
+
+        .avatar-circle {
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        .role-tag {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            letter-spacing: 0.04em;
+        }
+
+        .role-candidate {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .role-recruiter {
+            background: var(--emerald-50);
+            color: var(--emerald-600);
+        }
+
+        .role-admin {
+            background: #faf5ff;
+            color: #7e22ce;
+        }
+
+        .btn-text {
+            background: transparent;
+            border: none;
+            font-size: 0.8125rem;
+            color: var(--slate-500);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+
+        .btn-text:hover {
+            color: var(--slate-900);
+            background: var(--slate-100);
+        }
+
+        /* Container */
+        .page-container {
+            max-width: 1040px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+        }
+
+        /* Toast Alert */
+        .alert-banner {
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .alert-success {
+            background: var(--emerald-50);
+            border: 1px solid #bbf7d0;
+            color: var(--emerald-600);
+        }
+
+        .alert-error {
+            background: var(--rose-50);
+            border: 1px solid #fecdd3;
+            color: var(--rose-600);
+        }
+
+        /* Hero Banners */
+        .hero-banner {
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.85);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 18px -4px rgba(15, 23, 42, 0.03);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .hero-left {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .big-avatar {
+            width: 58px;
+            height: 58px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+            flex-shrink: 0;
+        }
+
+        .big-avatar.recruiter {
+            background: linear-gradient(135deg, #047857, #065f46);
+        }
+
+        .big-avatar.admin {
+            background: linear-gradient(135deg, #6d28d9, #4c1d95);
+        }
+
+        .hero-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--slate-900);
+        }
+
+        .hero-headline {
+            font-size: 0.875rem;
+            color: var(--slate-500);
+            margin-top: 3px;
+        }
+
+        .pill-cluster {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .mini-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            color: var(--slate-600);
+            background: var(--slate-100);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        /* Metric Stats Row for Recruiters */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.85);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--slate-500);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-top: 4px;
+        }
+
+        .stat-sub {
+            font-size: 0.75rem;
+            color: var(--slate-400);
+            margin-top: 2px;
+        }
+
+        /* Editorial Card */
+        .editorial-card {
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.85);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 4px 14px -4px rgba(15, 23, 42, 0.03);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--slate-100);
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            color: var(--slate-900);
+        }
+
+        .card-caption {
+            font-size: 0.8rem;
+            color: var(--slate-400);
+        }
+
+        /* Form Controls */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .col-span-2 {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--slate-700);
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 0.625rem 0.875rem;
+            font-size: 0.875rem;
+            color: var(--slate-900);
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius);
+            transition: all 0.15s ease;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 85px;
+        }
+
+        /* Skill Chips */
+        .skills-tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .skill-badge {
+            background: var(--slate-100);
+            color: var(--slate-700);
+            border: 1px solid var(--slate-200);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 9999px;
+            transition: all 0.15s;
+        }
+
+        .skill-badge:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        /* Buttons */
+        .btn-action {
+            background: var(--slate-900);
+            color: white;
+            border: none;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.1);
+        }
+
+        .btn-action:hover {
+            background: #000000;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(15, 23, 42, 0.15);
+        }
+
+        .btn-outline {
+            background: #ffffff;
+            color: var(--slate-700);
+            border: 1px solid var(--slate-200);
+            padding: 0.5rem 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s;
+        }
+
+        .btn-outline:hover {
+            background: var(--slate-100);
+            border-color: var(--slate-300);
+            color: var(--slate-900);
+        }
+
+        .btn-sm {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.775rem;
+        }
+
+        .btn-primary-sm {
+            background: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+        }
+
+        .btn-primary-sm:hover {
+            background: var(--primary-hover);
+            color: white;
+        }
+
+        /* SKELETON LOADER STATE */
+        .skeleton-block {
+            background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 6px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skeleton-row {
+            height: 38px;
+            margin-bottom: 1rem;
+        }
+
+        .skeleton-text {
+            height: 16px;
+            width: 35%;
+            margin-bottom: 8px;
+        }
+
+        /* EMPTY STATE */
+        .empty-state-box {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            border: 1px dashed var(--slate-200);
+            border-radius: var(--radius);
+            background: var(--slate-50);
+        }
+
+        .empty-state-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--slate-800);
+        }
+
+        .empty-state-desc {
+            font-size: 0.825rem;
+            color: var(--slate-500);
+            margin: 4px 0 1rem 0;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* RESUME ATTACHMENT CARD (Candidate) */
+        .attachment-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            background: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius);
+            margin-top: 0.75rem;
+            transition: border-color 0.15s;
+        }
+
+        .attachment-item:hover {
+            border-color: var(--slate-300);
+        }
+
+        .attachment-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .badge-doc {
+            width: 36px;
+            height: 36px;
+            background: #fee2e2;
+            color: #dc2626;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .doc-filename {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--slate-900);
+        }
+
+        .doc-sub {
+            font-size: 0.75rem;
+            color: var(--slate-500);
+        }
+
+        /* DIRECTORY TABLE (Recruiter / Admin View) */
+        .search-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        .search-input-wrapper input {
+            padding-left: 2.25rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--slate-400);
+            font-size: 0.85rem;
+        }
+
+        .candidate-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.875rem;
+        }
+
+        .candidate-table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: var(--slate-50);
+            color: var(--slate-600);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            border-bottom: 1px solid var(--slate-200);
+        }
+
+        .candidate-table th:first-child {
+            border-top-left-radius: 8px;
+        }
+
+        .candidate-table th:last-child {
+            border-top-right-radius: 8px;
+            text-align: right;
+        }
+
+        .candidate-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--slate-100);
+            vertical-align: middle;
+        }
+
+        .candidate-table tr:hover td {
+            background-color: #fafbfc;
+        }
+
+        .candidate-profile-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .table-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #334155, #0f172a);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .candidate-name {
+            font-weight: 600;
+            color: var(--slate-900);
+        }
+
+        .candidate-username {
+            font-size: 0.75rem;
+            color: var(--slate-400);
+        }
+
+        /* MODAL POPUP FOR CANDIDATE DETAILS */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 1rem;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 640px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            animation: modalPop 0.2s ease;
+        }
+
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-header {
+            padding: 1.5rem 1.75rem;
+            border-bottom: 1px solid var(--slate-100);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-body {
+            padding: 1.5rem 1.75rem;
+        }
+
+        .modal-section {
+            margin-bottom: 1.25rem;
+        }
+
+        .modal-section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--slate-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.75rem;
+            border-top: 1px solid var(--slate-100);
+            background: var(--slate-50);
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            border-bottom-left-radius: var(--radius-lg);
+            border-bottom-right-radius: var(--radius-lg);
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .col-span-2 {
+                grid-column: span 1;
+            }
+            .hero-banner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .candidate-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navbar -->
+    <header class="top-nav">
+        <div class="nav-content">
+            <a href="/dashboard.html" class="brand-link">
+                <div class="brand-logo-sq">H</div>
+                <span>HireTrack</span>
+            </a>
+
+            <div class="nav-actions">
+                <div class="user-identity">
+                    <div class="avatar-circle" id="userInitial">U</div>
+                    <span id="headerUserName">User</span>
+                    <span id="headerUserRole" class="role-tag">CANDIDATE</span>
+                </div>
+                <button class="btn-text" onclick="handleLogout()">Sign Out</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-container">
+
+        <!-- Global Toast Alert -->
+        <div id="alertBox" class="alert-banner">
+            <span id="alertMessage"></span>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- VIEW A: CANDIDATE WORKSPACE (ROLE_CANDIDATE ONLY)         -->
+        <!-- ========================================================= -->
+        <div id="candidateWorkspace" style="display: none;">
+
+            <!-- PROFILE HERO BANNER -->
+            <div class="hero-banner">
+                <div class="hero-left">
+                    <div class="big-avatar" id="heroAvatar">SC</div>
+                    <div>
+                        <h1 class="hero-name" id="heroName">Candidate Name</h1>
+                        <p class="hero-headline" id="heroHeadlineDisplay">Professional Headline</p>
+                        <div class="pill-cluster">
+                            <span class="mini-pill" id="heroLocationPill">📍 Remote</span>
+                            <span class="mini-pill" id="heroPhonePill">📞 No Phone</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ERROR STATE BANNER WITH RETRY -->
+            <div id="candidateErrorBanner" class="alert-banner alert-error" style="display: none;">
+                <span>Failed to load profile details from server.</span>
+                <button class="btn-outline btn-sm" style="color:#e11d48; border-color:#fecdd3;" onclick="loadCandidateProfile()">Retry</button>
+            </div>
+
+            <!-- 1. CANDIDATE PROFILE CARD -->
+            <div class="editorial-card">
+                <div class="card-header">
+                    <h2 class="card-title">Professional Credentials</h2>
+                    <span class="card-caption">Saved to your candidate record</span>
+                </div>
+
+                <!-- LOADING SKELETON STATE -->
+                <div id="candidateSkeleton">
+                    <div class="skeleton-block skeleton-text" style="width: 25%;"></div>
+                    <div class="skeleton-block skeleton-row"></div>
+                    <div class="skeleton-block skeleton-text" style="width: 35%;"></div>
+                    <div class="skeleton-block skeleton-row" style="height: 70px;"></div>
+                    <div class="skeleton-block skeleton-text" style="width: 20%;"></div>
+                    <div class="skeleton-block skeleton-row"></div>
+                </div>
+
+                <!-- EMPTY STATE -->
+                <div id="candidateEmptyState" class="empty-state-box" style="display: none;">
+                    <div class="empty-state-icon">📝</div>
+                    <h3 class="empty-state-title">Your candidate profile is empty</h3>
+                    <p class="empty-state-desc">Set up your headline, experience, and core skills to begin applying for open vacancies.</p>
+                    <button class="btn-action" onclick="showProfileFormWithSample()">
+                        <span>Initialize Profile</span>
+                    </button>
+                </div>
+
+                <!-- POPULATED STATE FORM -->
+                <form id="candidateProfileForm" style="display: none;" onsubmit="handleSaveProfile(event)">
+                    <div class="form-grid">
+                        <div class="col-span-2">
+                            <label class="form-label" for="headline">Professional Headline</label>
+                            <input type="text" id="headline" placeholder="e.g. Senior Software Engineer | Java & Cloud Architecture">
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="phone">Phone Number</label>
+                            <input type="text" id="phone" placeholder="+1 (555) 019-2834">
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="location">Location</label>
+                            <input type="text" id="location" placeholder="San Francisco, CA or Remote">
+                        </div>
+
+                        <div class="col-span-2">
+                            <label class="form-label" for="summary">Summary</label>
+                            <textarea id="summary" placeholder="Brief career summary..."></textarea>
+                        </div>
+
+                        <div class="col-span-2">
+                            <label class="form-label" for="skills">Technical Skills (Comma separated)</label>
+                            <input type="text" id="skills" oninput="renderSkillChips(this.value)" placeholder="Java, Spring Boot, PostgreSQL, Docker">
+                            <div id="skillsChipCloud" class="skills-tag-cloud"></div>
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="education">Education</label>
+                            <textarea id="education" placeholder="Degree, Institution, Graduation Year"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="experience">Work Experience</label>
+                            <textarea id="experience" placeholder="Company, Role, Responsibilities"></textarea>
+                        </div>
+
+                        <div class="col-span-2" style="margin-top: 0.5rem; display: flex; justify-content: flex-end;">
+                            <button type="submit" id="btnSaveProfile" class="btn-action">
+                                <span id="btnSaveText">Save Changes</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 2. RESUME / CV CARD -->
+            <div class="editorial-card">
+                <div class="card-header">
+                    <h2 class="card-title">Curriculum Vitae</h2>
+                    <span class="card-caption">Accepted file formats: PDF or DOCX (Max 5MB)</span>
+                </div>
+
+                <!-- RESUME EMPTY STATE -->
+                <div id="resumeEmptyState" class="empty-state-box">
+                    <div class="empty-state-icon">📄</div>
+                    <h3 class="empty-state-title">No resume attached</h3>
+                    <p class="empty-state-desc">Upload a PDF or DOCX file to automatically attach your resume to your candidate applications.</p>
+                    <button class="btn-outline" onclick="document.getElementById('fileInput').click()">
+                        <span>Select Resume Document</span>
+                    </button>
+                </div>
+
+                <!-- RESUME POPULATED STATE -->
+                <div id="resumePopulatedState" class="attachment-item" style="display: none;">
+                    <div class="attachment-meta">
+                        <div class="badge-doc">PDF</div>
+                        <div>
+                            <div id="activeResumeName" class="doc-filename">Resume.pdf</div>
+                            <div class="doc-sub">Active candidate CV on file</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <a id="btnDownloadLink" href="/api/candidate/profile/resume" class="btn-outline" target="_blank">Download</a>
+                        <button class="btn-outline" onclick="document.getElementById('fileInput').click()">Replace</button>
+                    </div>
+                </div>
+
+                <!-- Hidden File Input -->
+                <input type="file" id="fileInput" accept=".pdf,.docx" style="display: none;" onchange="handleFileSelected(event)">
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- VIEW B: RECRUITER & ADMIN TALENT HUB                      -->
+        <!-- ========================================================= -->
+        <div id="recruiterWorkspace" style="display: none;">
+
+            <!-- HERO BANNER -->
+            <div class="hero-banner">
+                <div class="hero-left">
+                    <div class="big-avatar recruiter" id="recruiterHeroAvatar">RM</div>
+                    <div>
+                        <h1 class="hero-name" id="recruiterHeroName">Talent Operations Hub</h1>
+                        <p class="hero-headline">Review registered candidates, inspect professional credentials, and download verified CVs.</p>
+                        <div class="pill-cluster">
+                            <span class="mini-pill" id="recruiterRolePill">🛡️ Hiring Manager</span>
+                            <span class="mini-pill">🏢 HireTrack Platform</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- METRICS ROW -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Candidates</div>
+                    <div class="stat-value" id="statTotalCandidates">--</div>
+                    <div class="stat-sub">Registered job seekers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">CVs on File</div>
+                    <div class="stat-value" id="statResumesAttached">--</div>
+                    <div class="stat-sub">Ready for review</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Directory Status</div>
+                    <div class="stat-value" style="font-size: 1.25rem; color: var(--emerald-600); margin-top: 10px;">● Live & Synced</div>
+                    <div class="stat-sub">Real-time candidate database</div>
+                </div>
+            </div>
+
+            <!-- CANDIDATE DIRECTORY CARD -->
+            <div class="editorial-card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">Talent Search Directory</h2>
+                        <span class="card-caption">Browse and evaluate candidate profiles across the organization</span>
+                    </div>
+                    <button class="btn-outline btn-sm" onclick="loadRecruiterCandidates()">↻ Refresh</button>
+                </div>
+
+                <!-- Search Input Bar -->
+                <div class="search-bar-row">
+                    <div class="search-input-wrapper">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="candidateSearchInput" oninput="filterCandidates(this.value)" placeholder="Search by name, skill (e.g. Spring Boot, Docker), or headline...">
+                    </div>
+                </div>
+
+                <!-- LOADING SKELETON -->
+                <div id="recruiterSkeleton">
+                    <div class="skeleton-block skeleton-row" style="height: 50px;"></div>
+                    <div class="skeleton-block skeleton-row" style="height: 50px;"></div>
+                    <div class="skeleton-block skeleton-row" style="height: 50px;"></div>
+                </div>
+
+                <!-- DIRECTORY ERROR BANNER -->
+                <div id="recruiterErrorBanner" class="alert-banner alert-error" style="display: none;">
+                    <span>Failed to retrieve candidate directory from server.</span>
+                    <button class="btn-outline btn-sm" style="color:#e11d48; border-color:#fecdd3;" onclick="loadRecruiterCandidates()">Retry</button>
+                </div>
+
+                <!-- DIRECTORY EMPTY STATE -->
+                <div id="recruiterEmptyState" class="empty-state-box" style="display: none;">
+                    <div class="empty-state-icon">👥</div>
+                    <h3 class="empty-state-title">No candidate profiles found</h3>
+                    <p class="empty-state-desc" id="recruiterEmptyDesc">No candidates have registered or created profiles yet.</p>
+                </div>
+
+                <!-- DIRECTORY TABLE -->
+                <div id="recruiterTableContainer" style="display: none; overflow-x: auto;">
+                    <table class="candidate-table">
+                        <thead>
+                            <tr>
+                                <th>Candidate</th>
+                                <th>Headline & Location</th>
+                                <th>Skills</th>
+                                <th>Curriculum Vitae</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="candidateTableBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- CANDIDATE DETAIL POPUP MODAL -->
+    <div id="candidateDetailModal" class="modal-overlay" onclick="handleModalOverlayClick(event)">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <h3 class="card-title" id="modalCandidateName">Candidate Details</h3>
+                    <span class="card-caption" id="modalCandidateHeadline">Headline</span>
+                </div>
+                <button class="btn-text" onclick="closeCandidateModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <div class="modal-section-title">Contact & Location</div>
+                    <div style="font-size: 0.875rem; color: var(--slate-700);">
+                        <p id="modalLocation">📍 Location: </p>
+                        <p id="modalPhone" style="margin-top: 4px;">📞 Phone: </p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">Career Summary</div>
+                    <p id="modalSummary" style="font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; white-space: pre-line;">--</p>
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">Technical Skills</div>
+                    <div id="modalSkillsCloud" class="skills-tag-cloud"></div>
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">Work Experience</div>
+                    <p id="modalExperience" style="font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; white-space: pre-line; background: var(--slate-50); padding: 0.75rem; border-radius: 6px;">--</p>
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">Education</div>
+                    <p id="modalEducation" style="font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; white-space: pre-line; background: var(--slate-50); padding: 0.75rem; border-radius: 6px;">--</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="modalResumeDownloadBtn" href="#" class="btn-action btn-sm" target="_blank" style="display: none;">
+                    <span>📥 Download CV</span>
+                </a>
+                <button class="btn-outline btn-sm" onclick="closeCandidateModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let allCandidateProfiles = [];
+
+        function showAlert(msg, isSuccess = true) {
+            const box = document.getElementById('alertBox');
+            box.className = 'alert-banner ' + (isSuccess ? 'alert-success' : 'alert-error');
+            document.getElementById('alertMessage').textContent = msg;
+            box.style.display = 'flex';
+            setTimeout(() => { box.style.display = 'none'; }, 4000);
+        }
+
+        async function verifyAuthAndInit() {
+            try {
+                const res = await fetch('/api/auth/me');
+                if (!res.ok) {
+                    window.location.replace('/login.html');
+                    return;
+                }
+                const user = await res.json();
+                currentUser = user;
+
+                const displayName = user.firstName ? `${user.firstName} ${user.lastName}` : user.username;
+                document.getElementById('headerUserName').textContent = displayName;
+                
+                const initials = (user.firstName ? user.firstName[0] : '') + (user.lastName ? user.lastName[0] : (user.username ? user.username[0] : 'U'));
+                document.getElementById('userInitial').textContent = initials.toUpperCase();
+
+                const role = (user.roles && user.roles.length > 0) ? user.roles[0].replace('ROLE_', '') : 'CANDIDATE';
+                const roleBadge = document.getElementById('headerUserRole');
+                roleBadge.textContent = role;
+
+                if (role === 'ADMIN') {
+                    roleBadge.className = 'role-tag role-admin';
+                } else if (role === 'RECRUITER') {
+                    roleBadge.className = 'role-tag role-recruiter';
+                } else {
+                    roleBadge.className = 'role-tag role-candidate';
+                }
+
+                // Role-based view switching
+                if (role === 'RECRUITER' || role === 'ADMIN') {
+                    document.getElementById('candidateWorkspace').style.display = 'none';
+                    document.getElementById('recruiterWorkspace').style.display = 'block';
+                    setupRecruiterHub(user, role);
+                } else {
+                    document.getElementById('candidateWorkspace').style.display = 'block';
+                    document.getElementById('recruiterWorkspace').style.display = 'none';
+                    setupCandidateWorkspace(user);
+                }
+            } catch (e) {
+                window.location.replace('/login.html');
+            }
+        }
+
+        // ==========================================
+        // 1. CANDIDATE WORKSPACE LOGIC
+        // ==========================================
+        function setupCandidateWorkspace(user) {
+            const displayName = user.firstName ? `${user.firstName} ${user.lastName}` : user.username;
+            document.getElementById('heroName').textContent = displayName;
+            const initials = (user.firstName ? user.firstName[0] : '') + (user.lastName ? user.lastName[0] : (user.username ? user.username[0] : 'C'));
+            document.getElementById('heroAvatar').textContent = initials.toUpperCase();
+            loadCandidateProfile();
+        }
+
+        async function loadCandidateProfile() {
+            const skeleton = document.getElementById('candidateSkeleton');
+            const emptyState = document.getElementById('candidateEmptyState');
+            const form = document.getElementById('candidateProfileForm');
+            const errorBanner = document.getElementById('candidateErrorBanner');
+
+            skeleton.style.display = 'block';
+            emptyState.style.display = 'none';
+            form.style.display = 'none';
+            errorBanner.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/candidate/profile/me');
+                skeleton.style.display = 'none';
+
+                if (res.ok) {
+                    const data = await res.json();
+                    populateForm(data);
+                    form.style.display = 'block';
+                    updateResumeDisplay(data);
+                } else if (res.status === 404) {
+                    emptyState.style.display = 'block';
+                } else {
+                    errorBanner.style.display = 'flex';
+                }
+            } catch (err) {
+                skeleton.style.display = 'none';
+                errorBanner.style.display = 'flex';
+            }
+        }
+
+        function populateForm(data) {
+            document.getElementById('headline').value = data.headline || '';
+            document.getElementById('heroHeadlineDisplay').textContent = data.headline || 'No headline set yet';
+            document.getElementById('phone').value = data.phone || '';
+            document.getElementById('heroPhonePill').textContent = '📞 ' + (data.phone || 'No phone');
+            document.getElementById('location').value = data.location || '';
+            document.getElementById('heroLocationPill').textContent = '📍 ' + (data.location || 'Remote');
+            document.getElementById('summary').value = data.summary || '';
+            
+            const skillsStr = data.skills ? Array.from(data.skills).join(', ') : '';
+            document.getElementById('skills').value = skillsStr;
+            renderSkillChips(skillsStr);
+
+            document.getElementById('education').value = data.education || '';
+            document.getElementById('experience').value = data.experience || '';
+        }
+
+        function renderSkillChips(raw) {
+            const container = document.getElementById('skillsChipCloud');
+            container.innerHTML = '';
+            if (!raw) return;
+            const items = raw.split(',').map(s => s.trim()).filter(s => s.length > 0);
+            items.forEach(skill => {
+                const badge = document.createElement('span');
+                badge.className = 'skill-badge';
+                badge.textContent = skill;
+                container.appendChild(badge);
+            });
+        }
+
+        function showProfileFormWithSample() {
+            document.getElementById('candidateEmptyState').style.display = 'none';
+            document.getElementById('candidateProfileForm').style.display = 'block';
+            document.getElementById('headline').value = 'Software Engineer | Backend & Cloud Systems';
+            document.getElementById('skills').value = 'Java, Spring Boot, PostgreSQL, Docker, Microservices, Git';
+            renderSkillChips('Java, Spring Boot, PostgreSQL, Docker, Microservices, Git');
+            document.getElementById('location').value = 'San Francisco, CA (Open to Remote)';
+            document.getElementById('summary').focus();
+        }
+
+        function updateResumeDisplay(data) {
+            const emptyBox = document.getElementById('resumeEmptyState');
+            const populatedBox = document.getElementById('resumePopulatedState');
+
+            if (data && data.resumeFileName) {
+                emptyBox.style.display = 'none';
+                populatedBox.style.display = 'flex';
+                document.getElementById('activeResumeName').textContent = data.resumeFileName;
+            } else {
+                emptyBox.style.display = 'block';
+                populatedBox.style.display = 'none';
+            }
+        }
+
+        async function handleSaveProfile(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnSaveProfile');
+            const btnText = document.getElementById('btnSaveText');
+            btn.disabled = true;
+            btnText.textContent = 'Saving...';
+
+            const rawSkills = document.getElementById('skills').value;
+            const skillsArray = rawSkills.split(',').map(s => s.trim()).filter(s => s.length > 0);
+
+            const payload = {
+                headline: document.getElementById('headline').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                location: document.getElementById('location').value.trim(),
+                summary: document.getElementById('summary').value.trim(),
+                skills: skillsArray,
+                education: document.getElementById('education').value.trim(),
+                experience: document.getElementById('experience').value.trim()
+            };
+
+            try {
+                const res = await fetch('/api/candidate/profile', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    const saved = await res.json();
+                    populateForm(saved);
+                    showAlert('Profile credentials saved successfully.', true);
+                } else {
+                    const err = await res.json().catch(() => ({}));
+                    showAlert(err.message || 'Failed to save profile changes.', false);
+                }
+            } catch (err) {
+                showAlert('Network error while saving profile.', false);
+            } finally {
+                btn.disabled = false;
+                btnText.textContent = 'Save Changes';
+            }
+        }
+
+        async function handleFileSelected(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            showAlert('Uploading resume document...', true);
+
+            try {
+                const res = await fetch('/api/candidate/profile/resume', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (res.ok) {
+                    const updated = await res.json();
+                    updateResumeDisplay(updated);
+                    showAlert(`Resume "${updated.resumeFileName}" attached to profile.`, true);
+                } else {
+                    const err = await res.json().catch(() => ({}));
+                    showAlert(err.message || 'File upload failed. Ensure the file is PDF or DOCX under 5MB.', false);
+                }
+            } catch (err) {
+                showAlert('Network error during file upload.', false);
+            } finally {
+                e.target.value = '';
+            }
+        }
+
+        // ==========================================
+        // 2. RECRUITER & ADMIN TALENT HUB LOGIC
+        // ==========================================
+        function setupRecruiterHub(user, role) {
+            const displayName = user.firstName ? `${user.firstName} ${user.lastName}` : user.username;
+            document.getElementById('recruiterHeroName').textContent = `${displayName} · ${role} Portal`;
+            const initials = (user.firstName ? user.firstName[0] : '') + (user.lastName ? user.lastName[0] : (user.username ? user.username[0] : 'R'));
+            const avatar = document.getElementById('recruiterHeroAvatar');
+            avatar.textContent = initials.toUpperCase();
+            if (role === 'ADMIN') {
+                avatar.className = 'big-avatar admin';
+                document.getElementById('recruiterRolePill').textContent = '⚡ System Administrator';
+            } else {
+                avatar.className = 'big-avatar recruiter';
+                document.getElementById('recruiterRolePill').textContent = '🛡️ Hiring Recruiter';
+            }
+            loadRecruiterCandidates();
+        }
+
+        async function loadRecruiterCandidates() {
+            const skeleton = document.getElementById('recruiterSkeleton');
+            const tableContainer = document.getElementById('recruiterTableContainer');
+            const emptyState = document.getElementById('recruiterEmptyState');
+            const errorBanner = document.getElementById('recruiterErrorBanner');
+
+            skeleton.style.display = 'block';
+            tableContainer.style.display = 'none';
+            emptyState.style.display = 'none';
+            errorBanner.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/candidate/profile');
+                skeleton.style.display = 'none';
+
+                if (res.ok) {
+                    allCandidateProfiles = await res.json();
+                    renderCandidateMetrics(allCandidateProfiles);
+                    renderCandidateTable(allCandidateProfiles);
+                } else {
+                    errorBanner.style.display = 'flex';
+                }
+            } catch (err) {
+                skeleton.style.display = 'none';
+                errorBanner.style.display = 'flex';
+            }
+        }
+
+        function renderCandidateMetrics(profiles) {
+            document.getElementById('statTotalCandidates').textContent = profiles.length;
+            const withResumes = profiles.filter(p => p.resumeFileName && p.resumeFileName.length > 0).length;
+            document.getElementById('statResumesAttached').textContent = withResumes;
+        }
+
+        function renderCandidateTable(profiles) {
+            const tbody = document.getElementById('candidateTableBody');
+            const tableContainer = document.getElementById('recruiterTableContainer');
+            const emptyState = document.getElementById('recruiterEmptyState');
+
+            tbody.innerHTML = '';
+
+            if (!profiles || profiles.length === 0) {
+                tableContainer.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            tableContainer.style.display = 'block';
+            emptyState.style.display = 'none';
+
+            profiles.forEach(candidate => {
+                const tr = document.createElement('tr');
+
+                // 1. Candidate Name & Avatar
+                const initial = (candidate.username ? candidate.username[0] : 'C').toUpperCase();
+                const nameDisplay = candidate.username;
+
+                // 2. Skills Chips
+                let skillsHtml = '';
+                if (candidate.skills && candidate.skills.length > 0) {
+                    const topSkills = Array.from(candidate.skills).slice(0, 3);
+                    skillsHtml = topSkills.map(s => `<span class="skill-badge" style="font-size:0.7rem;">${s}</span>`).join(' ');
+                    if (candidate.skills.length > 3) {
+                        skillsHtml += ` <span style="font-size:0.7rem; color:var(--slate-400);">+${candidate.skills.length - 3}</span>`;
+                    }
+                } else {
+                    skillsHtml = '<span style="color:var(--slate-400); font-size:0.75rem;">None listed</span>';
+                }
+
+                // 3. Resume link or badge
+                let resumeHtml = '';
+                if (candidate.resumeFileName) {
+                    resumeHtml = `
+                        <a href="/api/candidate/profile/${candidate.id}/resume" target="_blank" class="btn-outline btn-sm" style="display:inline-flex; align-items:center; gap:4px;">
+                            <span>📄 ${candidate.resumeFileName}</span>
+                        </a>
+                    `;
+                } else {
+                    resumeHtml = '<span class="mini-pill" style="color:var(--slate-400);">No CV</span>';
+                }
+
+                tr.innerHTML = `
+                    <td>
+                        <div class="candidate-profile-cell">
+                            <div class="table-avatar">${initial}</div>
+                            <div>
+                                <div class="candidate-name">${nameDisplay}</div>
+                                <div class="candidate-username">ID: #${candidate.id}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="font-weight:500; color:var(--slate-800); max-width:280px;">${candidate.headline || 'No headline'}</div>
+                        <div style="font-size:0.75rem; color:var(--slate-400); margin-top:2px;">📍 ${candidate.location || 'Remote'}</div>
+                    </td>
+                    <td>${skillsHtml}</td>
+                    <td>${resumeHtml}</td>
+                    <td style="text-align: right;">
+                        <button class="btn-outline btn-sm btn-primary-sm" onclick="openCandidateModal(${candidate.id})">
+                            View Profile
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterCandidates(query) {
+            const q = query.toLowerCase().trim();
+            if (!q) {
+                renderCandidateTable(allCandidateProfiles);
+                return;
+            }
+            const filtered = allCandidateProfiles.filter(c => {
+                const headline = (c.headline || '').toLowerCase();
+                const username = (c.username || '').toLowerCase();
+                const location = (c.location || '').toLowerCase();
+                const skills = (c.skills ? Array.from(c.skills).join(' ') : '').toLowerCase();
+                return headline.includes(q) || username.includes(q) || location.includes(q) || skills.includes(q);
+            });
+            renderCandidateTable(filtered);
+        }
+
+        function openCandidateModal(candidateId) {
+            const candidate = allCandidateProfiles.find(c => c.id === candidateId);
+            if (!candidate) return;
+
+            document.getElementById('modalCandidateName').textContent = candidate.username;
+            document.getElementById('modalCandidateHeadline').textContent = candidate.headline || 'Candidate Profile';
+            document.getElementById('modalLocation').textContent = '📍 Location: ' + (candidate.location || 'Remote');
+            document.getElementById('modalPhone').textContent = '📞 Phone: ' + (candidate.phone || 'Not provided');
+            document.getElementById('modalSummary').textContent = candidate.summary || 'No summary provided.';
+            document.getElementById('modalExperience').textContent = candidate.experience || 'No work experience listed.';
+            document.getElementById('modalEducation').textContent = candidate.education || 'No education listed.';
+
+            // Render modal skill chips
+            const skillsCloud = document.getElementById('modalSkillsCloud');
+            skillsCloud.innerHTML = '';
+            if (candidate.skills && candidate.skills.length > 0) {
+                candidate.skills.forEach(skill => {
+                    const badge = document.createElement('span');
+                    badge.className = 'skill-badge';
+                    badge.textContent = skill;
+                    skillsCloud.appendChild(badge);
+                });
+            } else {
+                skillsCloud.innerHTML = '<span style="color:var(--slate-400); font-size:0.8rem;">No skills listed</span>';
+            }
+
+            // Resume button in modal
+            const resumeBtn = document.getElementById('modalResumeDownloadBtn');
+            if (candidate.resumeFileName) {
+                resumeBtn.href = `/api/candidate/profile/${candidate.id}/resume`;
+                resumeBtn.style.display = 'inline-flex';
+            } else {
+                resumeBtn.style.display = 'none';
+            }
+
+            document.getElementById('candidateDetailModal').style.display = 'flex';
+        }
+
+        function closeCandidateModal() {
+            document.getElementById('candidateDetailModal').style.display = 'none';
+        }
+
+        function handleModalOverlayClick(e) {
+            if (e.target.id === 'candidateDetailModal') {
+                closeCandidateModal();
+            }
+        }
+
+        // ==========================================
+        // 3. COMMON LOGOUT
+        // ==========================================
+        async function handleLogout() {
+            try {
+                await fetch('/api/auth/logout', { method: 'POST' });
+            } finally {
+                window.location.replace('/login.html');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', verifyAuthAndInit);
+    </script>
+</body>
+</html>

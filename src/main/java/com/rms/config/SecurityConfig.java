@@ -34,12 +34,12 @@ public class SecurityConfig {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
-                // Public endpoints for registration, login, logout, and status check
-                .requestMatchers("/api/auth/**", "/error").permitAll()
+                // Public endpoints: frontend static pages, assets, auth APIs, and error
+                .requestMatchers("/", "/*.html", "/favicon.ico", "/css/**", "/js/**", "/api/auth/**", "/error").permitAll()
                 // Role-based restrictions
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 .requestMatchers("/api/recruiter/**").hasAnyRole("ADMIN", "RECRUITER")
-                .requestMatchers("/api/candidate/**").hasAnyRole("ADMIN", "CANDIDATE")
+                .requestMatchers("/api/candidate/**").hasAnyRole("ADMIN", "RECRUITER", "CANDIDATE")
                 // All other requests require authentication
                 .anyRequest().authenticated()
             )
