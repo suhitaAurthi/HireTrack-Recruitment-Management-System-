@@ -1,10 +1,12 @@
 package com.rms.config;
 
 import com.rms.entity.CandidateProfile;
+import com.rms.entity.Job;
 import com.rms.entity.Role;
 import com.rms.entity.RoleType;
 import com.rms.entity.User;
 import com.rms.repository.CandidateProfileRepository;
+import com.rms.repository.JobRepository;
 import com.rms.repository.RoleRepository;
 import com.rms.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +33,7 @@ public class DataInitializer implements CommandLineRunner {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final CandidateProfileRepository candidateProfileRepository;
+    private final JobRepository jobRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -122,6 +125,31 @@ public class DataInitializer implements CommandLineRunner {
                     .build());
 
             log.info("Created demo user: dev_marcus (password: marcus123) with pre-populated profile");
+        }
+
+        // 6. Seed Demo Job Vacancies (Coordinating with Module C / Member 1)
+        if (jobRepository.count() == 0) {
+            jobRepository.save(Job.builder()
+                    .title("Senior Java & Cloud Architect")
+                    .department("Core Platform Engineering")
+                    .location("San Francisco, CA (Remote Friendly)")
+                    .employmentType("Full-Time")
+                    .description("Lead the design and evolution of high-throughput distributed microservices on Spring Boot 3, Kubernetes, and PostgreSQL.")
+                    .requirements("5+ years of Java/Spring ecosystem, RESTful API design, Docker/Kubernetes container orchestration, and relational database optimization.")
+                    .active(true)
+                    .build());
+
+            jobRepository.save(Job.builder()
+                    .title("Staff Cloud & DevOps Engineer")
+                    .department("Cloud Infrastructure")
+                    .location("Seattle, WA (Remote)")
+                    .employmentType("Full-Time")
+                    .description("Architect scalable cloud infrastructure, zero-downtime CI/CD deployment pipelines, and observability monitoring with Prometheus & Grafana.")
+                    .requirements("Strong background in AWS/GCP, Terraform IaC, multi-cluster Kubernetes administration, and automated test pipelines.")
+                    .active(true)
+                    .build());
+
+            log.info("Seeded initial active job vacancies for application management testing");
         }
     }
 
