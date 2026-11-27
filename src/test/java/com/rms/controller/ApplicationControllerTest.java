@@ -166,6 +166,25 @@ class ApplicationControllerTest {
 
     @Test
     @WithMockUser(roles = "RECRUITER")
+    @DisplayName("GET /api/applications - Recruiter can get all applications across jobs")
+    void shouldGetAllApplicationsWhenRecruiter() throws Exception {
+        ApplicationResponseDto app = ApplicationResponseDto.builder()
+                .id(100L)
+                .candidateUsername("sarah_c")
+                .jobTitle("Cloud Architect")
+                .status(ApplicationStatus.SUBMITTED)
+                .build();
+
+        when(applicationService.getAllApplications()).thenReturn(List.of(app));
+
+        mockMvc.perform(get("/api/applications"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(100L))
+                .andExpect(jsonPath("$[0].jobTitle").value("Cloud Architect"));
+    }
+
+    @Test
+    @WithMockUser(roles = "RECRUITER")
     @DisplayName("GET /api/applications/job/{jobId} - Recruiter can get applications for a job")
     void shouldGetApplicationsByJobWhenRecruiter() throws Exception {
         ApplicationResponseDto app = ApplicationResponseDto.builder()

@@ -1,10 +1,13 @@
 package com.rms.config;
 
+import com.rms.entity.Application;
+import com.rms.entity.ApplicationStatus;
 import com.rms.entity.CandidateProfile;
 import com.rms.entity.Job;
 import com.rms.entity.Role;
 import com.rms.entity.RoleType;
 import com.rms.entity.User;
+import com.rms.repository.ApplicationRepository;
 import com.rms.repository.CandidateProfileRepository;
 import com.rms.repository.JobRepository;
 import com.rms.repository.RoleRepository;
@@ -34,6 +37,7 @@ public class DataInitializer implements CommandLineRunner {
     private final RoleRepository roleRepository;
     private final CandidateProfileRepository candidateProfileRepository;
     private final JobRepository jobRepository;
+    private final ApplicationRepository applicationRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -128,8 +132,10 @@ public class DataInitializer implements CommandLineRunner {
         }
 
         // 6. Seed Demo Job Vacancies (Coordinating with Module C / Member 1)
+        Job job1 = null;
+        Job job2 = null;
         if (jobRepository.count() == 0) {
-            jobRepository.save(Job.builder()
+            job1 = jobRepository.save(Job.builder()
                     .title("Senior Java & Cloud Architect")
                     .department("Core Platform Engineering")
                     .location("San Francisco, CA (Remote Friendly)")
@@ -139,7 +145,7 @@ public class DataInitializer implements CommandLineRunner {
                     .active(true)
                     .build());
 
-            jobRepository.save(Job.builder()
+            job2 = jobRepository.save(Job.builder()
                     .title("Staff Cloud & DevOps Engineer")
                     .department("Cloud Infrastructure")
                     .location("Seattle, WA (Remote)")
@@ -150,6 +156,34 @@ public class DataInitializer implements CommandLineRunner {
                     .build());
 
             log.info("Seeded initial active job vacancies for application management testing");
+        }
+
+        // 7. Seed Demo Applications for Candidate Pipeline Testing
+        if (applicationRepository.count() == 0 && job1 != null && job2 != null) {
+            CandidateProfile candidateProfile1 = candidateProfileRepository.findByUserUsername("candidate").orElse(null);
+            CandidateProfile candidateProfile2 = candidateProfileRepository.findByUserUsername("dev_marcus").orElse(null);
+
+            if (candidateProfile1 != null) {
+                applicationRepository.save(Application.builder()
+                        .candidateProfile(candidateProfile1)
+                        .job(job1)
+                        .status(ApplicationStatus.UNDER_REVIEW)
+                        .coverLetter("Excited to bring 5+ years of Java/Spring microservices and cloud experience to HireTrack.")
+                        .recruiterNotes("Profile matches key technical requirements. Reviewing CV.")
+                        .build());
+            }
+
+            if (candidateProfile2 != null) {
+                applicationRepository.save(Application.builder()
+                        .candidateProfile(candidateProfile2)
+                        .job(job2)
+                        .status(ApplicationStatus.SHORTLISTED)
+                        .coverLetter("Passionate about Kubernetes orchestration, zero-downtime deployments, and infrastructure-as-code.")
+                        .recruiterNotes("Strong Kubernetes and Terraform background. Shortlisted for technical round.")
+                        .build());
+            }
+
+            log.info("Seeded initial demo job applications for pipeline and status tracking");
         }
     }
 

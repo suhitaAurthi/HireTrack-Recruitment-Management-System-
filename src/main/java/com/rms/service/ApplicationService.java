@@ -13,6 +13,8 @@ public interface ApplicationService {
 
     List<ApplicationResponseDto> getMyApplications();
 
+    List<ApplicationResponseDto> getAllApplications();
+
     List<ApplicationResponseDto> getApplicationsByJob(Long jobId);
 
     ApplicationResponseDto getApplicationById(Long applicationId);

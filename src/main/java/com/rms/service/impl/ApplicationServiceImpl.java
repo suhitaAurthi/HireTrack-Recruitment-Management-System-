@@ -76,6 +76,15 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<ApplicationResponseDto> getAllApplications() {
+        return applicationRepository.findAllWithDetails()
+                .stream()
+                .map(this::mapToDto)
+                .toList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<ApplicationResponseDto> getApplicationsByJob(Long jobId) {
         if (!jobRepository.existsById(jobId)) {
             throw new ResourceNotFoundException("Job vacancy not found with ID: " + jobId);

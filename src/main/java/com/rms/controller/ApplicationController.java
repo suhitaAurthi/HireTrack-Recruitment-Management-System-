@@ -33,6 +33,12 @@ public class ApplicationController {
         return ResponseEntity.ok(applicationService.getMyApplications());
     }
 
+    @GetMapping
+    @PreAuthorize("hasAnyRole('RECRUITER', 'ADMIN')")
+    public ResponseEntity<List<ApplicationResponseDto>> getAllApplications() {
+        return ResponseEntity.ok(applicationService.getAllApplications());
+    }
+
     @PutMapping("/{id}/withdraw")
     @PreAuthorize("hasRole('CANDIDATE')")
     public ResponseEntity<ApplicationResponseDto> withdrawApplication(@PathVariable Long id) {

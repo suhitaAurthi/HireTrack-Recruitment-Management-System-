@@ -23,10 +23,12 @@
             --slate-50: #f8fafc;
             --emerald-600: #059669;
             --emerald-50: #ecfdf5;
+            --amber-600: #d97706;
+            --amber-50: #fffbeb;
+            --purple-600: #7c3aed;
+            --purple-50: #f5f3ff;
             --rose-600: #e11d48;
             --rose-50: #fff1f2;
-            --indigo-600: #4f46e5;
-            --indigo-50: #eef2ff;
             --radius: 10px;
             --radius-lg: 16px;
         }
@@ -135,20 +137,9 @@
             letter-spacing: 0.04em;
         }
 
-        .role-candidate {
-            background: var(--primary-light);
-            color: var(--primary);
-        }
-
-        .role-recruiter {
-            background: var(--emerald-50);
-            color: var(--emerald-600);
-        }
-
-        .role-admin {
-            background: #faf5ff;
-            color: #7e22ce;
-        }
+        .role-candidate { background: var(--primary-light); color: var(--primary); }
+        .role-recruiter { background: var(--emerald-50); color: var(--emerald-600); }
+        .role-admin { background: #faf5ff; color: #7e22ce; }
 
         .btn-text {
             background: transparent;
@@ -162,10 +153,7 @@
             transition: all 0.15s;
         }
 
-        .btn-text:hover {
-            color: var(--slate-900);
-            background: var(--slate-100);
-        }
+        .btn-text:hover { color: var(--slate-900); background: var(--slate-100); }
 
         /* Container */
         .page-container {
@@ -194,19 +182,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .alert-success {
-            background: var(--emerald-50);
-            border: 1px solid #bbf7d0;
-            color: var(--emerald-600);
-        }
+        .alert-success { background: var(--emerald-50); border: 1px solid #bbf7d0; color: var(--emerald-600); }
+        .alert-error { background: var(--rose-50); border: 1px solid #fecdd3; color: var(--rose-600); }
 
-        .alert-error {
-            background: var(--rose-50);
-            border: 1px solid #fecdd3;
-            color: var(--rose-600);
-        }
-
-        /* Hero Banners */
+        /* Hero Banner */
         .hero-banner {
             background: #ffffff;
             border: 1px solid rgba(226, 232, 240, 0.85);
@@ -241,13 +220,8 @@
             flex-shrink: 0;
         }
 
-        .big-avatar.recruiter {
-            background: linear-gradient(135deg, #047857, #065f46);
-        }
-
-        .big-avatar.admin {
-            background: linear-gradient(135deg, #6d28d9, #4c1d95);
-        }
+        .big-avatar.recruiter { background: linear-gradient(135deg, #047857, #065f46); }
+        .big-avatar.admin { background: linear-gradient(135deg, #6d28d9, #4c1d95); }
 
         .hero-name {
             font-size: 1.35rem;
@@ -281,7 +255,7 @@
             font-weight: 500;
         }
 
-        /* Metric Stats Row for Recruiters */
+        /* Metric Stats Row */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -318,7 +292,7 @@
             margin-top: 2px;
         }
 
-        /* Editorial Card */
+        /* Section Cards */
         .editorial-card {
             background: #ffffff;
             border: 1px solid rgba(226, 232, 240, 0.85);
@@ -347,72 +321,6 @@
         .card-caption {
             font-size: 0.8rem;
             color: var(--slate-400);
-        }
-
-        /* Form Controls */
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .col-span-2 {
-            grid-column: span 2;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--slate-700);
-            margin-bottom: 5px;
-        }
-
-        input[type="text"], textarea {
-            width: 100%;
-            padding: 0.625rem 0.875rem;
-            font-size: 0.875rem;
-            color: var(--slate-900);
-            background: #ffffff;
-            border: 1px solid var(--slate-200);
-            border-radius: var(--radius);
-            transition: all 0.15s ease;
-        }
-
-        input[type="text"]:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 85px;
-        }
-
-        /* Skill Chips */
-        .skills-tag-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 8px;
-        }
-
-        .skill-badge {
-            background: var(--slate-100);
-            color: var(--slate-700);
-            border: 1px solid var(--slate-200);
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 3px 9px;
-            border-radius: 9999px;
-            transition: all 0.15s;
-        }
-
-        .skill-badge:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            background: var(--primary-light);
         }
 
         /* Buttons */
@@ -460,156 +368,88 @@
             color: var(--slate-900);
         }
 
-        .btn-sm {
-            padding: 0.35rem 0.75rem;
-            font-size: 0.775rem;
-        }
+        .btn-sm { padding: 0.35rem 0.75rem; font-size: 0.775rem; }
+        .btn-primary-sm { background: var(--primary); color: white; border: 1px solid var(--primary); }
+        .btn-primary-sm:hover { background: var(--primary-hover); color: white; }
+        .btn-danger-sm { color: var(--rose-600); border-color: #fecdd3; }
+        .btn-danger-sm:hover { background: var(--rose-50); color: var(--rose-600); }
 
-        .btn-primary-sm {
-            background: var(--primary);
-            color: white;
-            border: 1px solid var(--primary);
-        }
-
-        .btn-primary-sm:hover {
-            background: var(--primary-hover);
-            color: white;
-        }
-
-        /* SKELETON LOADER STATE */
-        .skeleton-block {
-            background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-            border-radius: 6px;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        .skeleton-row {
-            height: 38px;
-            margin-bottom: 1rem;
-        }
-
-        .skeleton-text {
-            height: 16px;
-            width: 35%;
-            margin-bottom: 8px;
-        }
-
-        /* EMPTY STATE */
-        .empty-state-box {
-            text-align: center;
-            padding: 3rem 1.5rem;
-            border: 1px dashed var(--slate-200);
-            border-radius: var(--radius);
-            background: var(--slate-50);
-        }
-
-        .empty-state-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .empty-state-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--slate-800);
-        }
-
-        .empty-state-desc {
-            font-size: 0.825rem;
-            color: var(--slate-500);
-            margin: 4px 0 1rem 0;
-            max-width: 380px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* RESUME ATTACHMENT CARD (Candidate) */
-        .attachment-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 1.25rem;
-            background: var(--slate-50);
-            border: 1px solid var(--slate-200);
-            border-radius: var(--radius);
-            margin-top: 0.75rem;
-            transition: border-color 0.15s;
-        }
-
-        .attachment-item:hover {
-            border-color: var(--slate-300);
-        }
-
-        .attachment-meta {
-            display: flex;
-            align-items: center;
+        /* Form Controls */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
         }
 
-        .badge-doc {
-            width: 36px;
-            height: 36px;
-            background: #fee2e2;
-            color: #dc2626;
+        .col-span-2 { grid-column: span 2; }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--slate-700);
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 0.625rem 0.875rem;
+            font-size: 0.875rem;
+            color: var(--slate-900);
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius);
+            transition: all 0.15s ease;
+        }
+
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        textarea { resize: vertical; min-height: 85px; }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 8px;
+            border-radius: 9999px;
             font-size: 0.75rem;
             font-weight: 700;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            letter-spacing: 0.02em;
         }
 
-        .doc-filename {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--slate-900);
-        }
+        .status-SUBMITTED { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+        .status-UNDER_REVIEW { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+        .status-SHORTLISTED { background: #f5f3ff; color: #7c3aed; border: 1px solid #ddd6fe; }
+        .status-INTERVIEW_SCHEDULED { background: #e0e7ff; color: #4338ca; border: 1px solid #c7d2fe; }
+        .status-HIRED { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+        .status-REJECTED { background: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; }
+        .status-WITHDRAWN { background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; }
 
-        .doc-sub {
+        /* Skill Chips */
+        .skills-tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .skill-badge {
+            background: var(--slate-100);
+            color: var(--slate-700);
+            border: 1px solid var(--slate-200);
             font-size: 0.75rem;
-            color: var(--slate-500);
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 9999px;
         }
 
-        /* DIRECTORY TABLE (Recruiter / Admin View) */
-        .search-bar-row {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .search-input-wrapper {
-            position: relative;
-            flex: 1;
-        }
-
-        .search-input-wrapper input {
-            padding-left: 2.25rem;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 0.85rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--slate-400);
-            font-size: 0.85rem;
-        }
-
-        .candidate-table {
+        /* Tables */
+        .data-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
             font-size: 0.875rem;
         }
 
-        .candidate-table th {
+        .data-table th {
             text-align: left;
             padding: 0.75rem 1rem;
             background: var(--slate-50);
@@ -621,62 +461,85 @@
             border-bottom: 1px solid var(--slate-200);
         }
 
-        .candidate-table th:first-child {
-            border-top-left-radius: 8px;
-        }
+        .data-table th:first-child { border-top-left-radius: 8px; }
+        .data-table th:last-child { border-top-right-radius: 8px; text-align: right; }
 
-        .candidate-table th:last-child {
-            border-top-right-radius: 8px;
-            text-align: right;
-        }
-
-        .candidate-table td {
+        .data-table td {
             padding: 1rem;
             border-bottom: 1px solid var(--slate-100);
             vertical-align: middle;
         }
 
-        .candidate-table tr:hover td {
-            background-color: #fafbfc;
+        .data-table tr:hover td { background-color: #fafbfc; }
+
+        /* Job Vacancies Cards */
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
         }
 
-        .candidate-profile-cell {
+        .job-card {
+            background: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius);
+            padding: 1.25rem;
             display: flex;
-            align-items: center;
-            gap: 0.75rem;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.15s ease;
         }
 
-        .table-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #334155, #0f172a);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .job-card:hover {
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+        }
+
+        .job-card-title {
+            font-size: 1rem;
             font-weight: 700;
-            font-size: 0.85rem;
-            flex-shrink: 0;
-        }
-
-        .candidate-name {
-            font-weight: 600;
             color: var(--slate-900);
         }
 
-        .candidate-username {
+        .job-card-dept {
             font-size: 0.75rem;
-            color: var(--slate-400);
+            color: var(--slate-500);
+            margin-top: 2px;
         }
 
-        /* MODAL POPUP FOR CANDIDATE DETAILS */
+        .job-card-desc {
+            font-size: 0.825rem;
+            color: var(--slate-600);
+            margin: 0.75rem 0;
+            line-height: 1.5;
+        }
+
+        /* Skeletons & Empty States */
+        .skeleton-block {
+            background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 6px;
+        }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .skeleton-row { height: 42px; margin-bottom: 0.75rem; }
+
+        .empty-state-box {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border: 1px dashed var(--slate-200);
+            border-radius: var(--radius);
+            background: var(--slate-50);
+        }
+        .empty-state-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .empty-state-title { font-size: 0.95rem; font-weight: 600; color: var(--slate-800); }
+        .empty-state-desc { font-size: 0.825rem; color: var(--slate-500); margin-top: 4px; }
+
+        /* Modals */
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(15, 23, 42, 0.45);
             backdrop-filter: blur(4px);
             display: none;
@@ -690,10 +553,10 @@
             background: #ffffff;
             border-radius: var(--radius-lg);
             width: 100%;
-            max-width: 640px;
+            max-width: 600px;
             max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             animation: modalPop 0.2s ease;
         }
 
@@ -703,32 +566,16 @@
         }
 
         .modal-header {
-            padding: 1.5rem 1.75rem;
+            padding: 1.25rem 1.5rem;
             border-bottom: 1px solid var(--slate-100);
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .modal-body {
-            padding: 1.5rem 1.75rem;
-        }
-
-        .modal-section {
-            margin-bottom: 1.25rem;
-        }
-
-        .modal-section-title {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--slate-400);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-
+        .modal-body { padding: 1.5rem; }
         .modal-footer {
-            padding: 1rem 1.75rem;
+            padding: 1rem 1.5rem;
             border-top: 1px solid var(--slate-100);
             background: var(--slate-50);
             display: flex;
@@ -739,23 +586,10 @@
         }
 
         @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            .col-span-2 {
-                grid-column: span 1;
-            }
-            .hero-banner {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .candidate-table {
-                display: block;
-                overflow-x: auto;
-            }
+            .stats-grid, .jobs-grid, .form-grid { grid-template-columns: 1fr; }
+            .col-span-2 { grid-column: span 1; }
+            .hero-banner { flex-direction: column; align-items: flex-start; }
+            .data-table { display: block; overflow-x: auto; }
         }
     </style>
 </head>
@@ -782,17 +616,17 @@
 
     <main class="page-container">
 
-        <!-- Global Toast Alert -->
+        <!-- Global Alert Banner -->
         <div id="alertBox" class="alert-banner">
             <span id="alertMessage"></span>
         </div>
 
         <!-- ========================================================= -->
-        <!-- VIEW A: CANDIDATE WORKSPACE (ROLE_CANDIDATE ONLY)         -->
+        <!-- VIEW A: CANDIDATE WORKSPACE                               -->
         <!-- ========================================================= -->
         <div id="candidateWorkspace" style="display: none;">
 
-            <!-- PROFILE HERO BANNER -->
+            <!-- HERO BANNER -->
             <div class="hero-banner">
                 <div class="hero-left">
                     <div class="big-avatar" id="heroAvatar">SC</div>
@@ -807,41 +641,78 @@
                 </div>
             </div>
 
-            <!-- ERROR STATE BANNER WITH RETRY -->
-            <div id="candidateErrorBanner" class="alert-banner alert-error" style="display: none;">
-                <span>Failed to load profile details from server.</span>
-                <button class="btn-outline btn-sm" style="color:#e11d48; border-color:#fecdd3;" onclick="loadCandidateProfile()">Retry</button>
+            <!-- 1. OPEN JOB VACANCIES (Module C: Apply) -->
+            <div class="editorial-card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">Explore Open Vacancies</h2>
+                        <span class="card-caption">Find your next engineering role and submit your application</span>
+                    </div>
+                    <button class="btn-outline btn-sm" onclick="loadActiveJobs()">↻ Refresh Jobs</button>
+                </div>
+
+                <div id="jobsLoadingSkeleton">
+                    <div class="skeleton-block skeleton-row" style="height: 100px;"></div>
+                </div>
+
+                <div id="jobsEmptyState" class="empty-state-box" style="display: none;">
+                    <div class="empty-state-icon">💼</div>
+                    <h3 class="empty-state-title">No open vacancies at this time</h3>
+                    <p class="empty-state-desc">Check back soon for new career openings.</p>
+                </div>
+
+                <div id="jobsGrid" class="jobs-grid" style="display: none;">
+                    <!-- Dynamically Populated -->
+                </div>
             </div>
 
-            <!-- 1. CANDIDATE PROFILE CARD -->
+            <!-- 2. MY SUBMITTED APPLICATIONS (Module C: Track & Withdraw) -->
+            <div class="editorial-card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">My Applications</h2>
+                        <span class="card-caption">Track application status in real-time or withdraw</span>
+                    </div>
+                    <button class="btn-outline btn-sm" onclick="loadMyApplications()">↻ Refresh</button>
+                </div>
+
+                <div id="myAppsSkeleton">
+                    <div class="skeleton-block skeleton-row"></div>
+                    <div class="skeleton-block skeleton-row"></div>
+                </div>
+
+                <div id="myAppsEmptyState" class="empty-state-box" style="display: none;">
+                    <div class="empty-state-icon">📬</div>
+                    <h3 class="empty-state-title">No applications submitted yet</h3>
+                    <p class="empty-state-desc">Explore the open vacancies above to apply for positions matching your skill set.</p>
+                </div>
+
+                <div id="myAppsTableContainer" style="display: none; overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Position & Department</th>
+                                <th>Applied Date</th>
+                                <th>Status</th>
+                                <th>Recruiter Notes</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myAppsTableBody">
+                            <!-- Dynamically Populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 3. PROFESSIONAL CREDENTIALS -->
             <div class="editorial-card">
                 <div class="card-header">
                     <h2 class="card-title">Professional Credentials</h2>
-                    <span class="card-caption">Saved to your candidate record</span>
+                    <span class="card-caption">Saved to your candidate record for all job applications</span>
                 </div>
 
-                <!-- LOADING SKELETON STATE -->
-                <div id="candidateSkeleton">
-                    <div class="skeleton-block skeleton-text" style="width: 25%;"></div>
-                    <div class="skeleton-block skeleton-row"></div>
-                    <div class="skeleton-block skeleton-text" style="width: 35%;"></div>
-                    <div class="skeleton-block skeleton-row" style="height: 70px;"></div>
-                    <div class="skeleton-block skeleton-text" style="width: 20%;"></div>
-                    <div class="skeleton-block skeleton-row"></div>
-                </div>
-
-                <!-- EMPTY STATE -->
-                <div id="candidateEmptyState" class="empty-state-box" style="display: none;">
-                    <div class="empty-state-icon">📝</div>
-                    <h3 class="empty-state-title">Your candidate profile is empty</h3>
-                    <p class="empty-state-desc">Set up your headline, experience, and core skills to begin applying for open vacancies.</p>
-                    <button class="btn-action" onclick="showProfileFormWithSample()">
-                        <span>Initialize Profile</span>
-                    </button>
-                </div>
-
-                <!-- POPULATED STATE FORM -->
-                <form id="candidateProfileForm" style="display: none;" onsubmit="handleSaveProfile(event)">
+                <form id="candidateProfileForm" onsubmit="handleSaveProfile(event)">
                     <div class="form-grid">
                         <div class="col-span-2">
                             <label class="form-label" for="headline">Professional Headline</label>
@@ -888,39 +759,34 @@
                 </form>
             </div>
 
-            <!-- 2. RESUME / CV CARD -->
+            <!-- 4. CURRICULUM VITAE -->
             <div class="editorial-card">
                 <div class="card-header">
                     <h2 class="card-title">Curriculum Vitae</h2>
                     <span class="card-caption">Accepted file formats: PDF or DOCX (Max 5MB)</span>
                 </div>
 
-                <!-- RESUME EMPTY STATE -->
                 <div id="resumeEmptyState" class="empty-state-box">
                     <div class="empty-state-icon">📄</div>
                     <h3 class="empty-state-title">No resume attached</h3>
-                    <p class="empty-state-desc">Upload a PDF or DOCX file to automatically attach your resume to your candidate applications.</p>
-                    <button class="btn-outline" onclick="document.getElementById('fileInput').click()">
-                        <span>Select Resume Document</span>
-                    </button>
+                    <p class="empty-state-desc">Upload a PDF or DOCX resume to attach it to your applications.</p>
+                    <button class="btn-outline" onclick="document.getElementById('fileInput').click()">Select Resume Document</button>
                 </div>
 
-                <!-- RESUME POPULATED STATE -->
-                <div id="resumePopulatedState" class="attachment-item" style="display: none;">
-                    <div class="attachment-meta">
-                        <div class="badge-doc">PDF</div>
+                <div id="resumePopulatedState" class="job-card" style="display: none; flex-direction: row; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <span style="font-size: 1.75rem;">📄</span>
                         <div>
-                            <div id="activeResumeName" class="doc-filename">Resume.pdf</div>
-                            <div class="doc-sub">Active candidate CV on file</div>
+                            <div id="activeResumeName" style="font-weight: 600; color: var(--slate-900);">Resume.pdf</div>
+                            <div style="font-size: 0.75rem; color: var(--slate-500);">Active CV on file</div>
                         </div>
                     </div>
                     <div style="display: flex; gap: 0.5rem;">
-                        <a id="btnDownloadLink" href="/api/candidate/profile/resume" class="btn-outline" target="_blank">Download</a>
-                        <button class="btn-outline" onclick="document.getElementById('fileInput').click()">Replace</button>
+                        <a id="btnDownloadLink" href="/api/candidate/profile/resume" class="btn-outline btn-sm" target="_blank">Download</a>
+                        <button class="btn-outline btn-sm" onclick="document.getElementById('fileInput').click()">Replace</button>
                     </div>
                 </div>
 
-                <!-- Hidden File Input -->
                 <input type="file" id="fileInput" accept=".pdf,.docx" style="display: none;" onchange="handleFileSelected(event)">
             </div>
         </div>
@@ -936,9 +802,9 @@
                     <div class="big-avatar recruiter" id="recruiterHeroAvatar">RM</div>
                     <div>
                         <h1 class="hero-name" id="recruiterHeroName">Talent Operations Hub</h1>
-                        <p class="hero-headline">Review registered candidates, inspect professional credentials, and download verified CVs.</p>
+                        <p class="hero-headline">Review candidate applications, manage hiring status pipeline, and inspect talent credentials.</p>
                         <div class="pill-cluster">
-                            <span class="mini-pill" id="recruiterRolePill">🛡️ Hiring Manager</span>
+                            <span class="mini-pill" id="recruiterRolePill">🛡️ Hiring Recruiter</span>
                             <span class="mini-pill">🏢 HireTrack Platform</span>
                         </div>
                     </div>
@@ -948,74 +814,101 @@
             <!-- METRICS ROW -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-label">Total Candidates</div>
+                    <div class="stat-label">Applications Received</div>
+                    <div class="stat-value" id="statTotalApplications">--</div>
+                    <div class="stat-sub">Across all job vacancies</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Registered Candidates</div>
                     <div class="stat-value" id="statTotalCandidates">--</div>
-                    <div class="stat-sub">Registered job seekers</div>
+                    <div class="stat-sub">Talent in directory</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">CVs on File</div>
-                    <div class="stat-value" id="statResumesAttached">--</div>
-                    <div class="stat-sub">Ready for review</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Directory Status</div>
-                    <div class="stat-value" style="font-size: 1.25rem; color: var(--emerald-600); margin-top: 10px;">● Live & Synced</div>
-                    <div class="stat-sub">Real-time candidate database</div>
+                    <div class="stat-label">Active Vacancies</div>
+                    <div class="stat-value" id="statActiveJobs">--</div>
+                    <div class="stat-sub">Currently open</div>
                 </div>
             </div>
 
-            <!-- CANDIDATE DIRECTORY CARD -->
+            <!-- 1. HIRING APPLICATIONS PIPELINE (Module C) -->
+            <div class="editorial-card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">Hiring Applications Pipeline</h2>
+                        <span class="card-caption">Manage applicant status, review cover letters, and inspect CVs</span>
+                    </div>
+                    <button class="btn-outline btn-sm" onclick="loadRecruiterApplications()">↻ Refresh Pipeline</button>
+                </div>
+
+                <!-- Pipeline Search / Filter -->
+                <div style="display: flex; gap: 0.75rem; margin-bottom: 1.25rem;">
+                    <div style="flex: 1;">
+                        <input type="text" id="pipelineSearchInput" oninput="filterPipelineApplications(this.value)" placeholder="Search applicants by name, username, or position...">
+                    </div>
+                    <div style="width: 200px;">
+                        <select id="pipelineJobFilter" onchange="filterPipelineByJob(this.value)">
+                            <option value="">All Vacancies</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="pipelineSkeleton">
+                    <div class="skeleton-block skeleton-row" style="height: 50px;"></div>
+                    <div class="skeleton-block skeleton-row" style="height: 50px;"></div>
+                </div>
+
+                <div id="pipelineEmptyState" class="empty-state-box" style="display: none;">
+                    <div class="empty-state-icon">📋</div>
+                    <h3 class="empty-state-title">No applications found</h3>
+                    <p class="empty-state-desc">No candidates have applied to the selected vacancy yet.</p>
+                </div>
+
+                <div id="pipelineTableContainer" style="display: none; overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Candidate</th>
+                                <th>Applied Position</th>
+                                <th>Date</th>
+                                <th>Resume / CV</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pipelineTableBody">
+                            <!-- Populated Dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 2. CANDIDATE TALENT DIRECTORY (Module B) -->
             <div class="editorial-card">
                 <div class="card-header">
                     <div>
                         <h2 class="card-title">Talent Search Directory</h2>
-                        <span class="card-caption">Browse and evaluate candidate profiles across the organization</span>
+                        <span class="card-caption">Search candidate profiles by skills, location, or credentials</span>
                     </div>
                     <button class="btn-outline btn-sm" onclick="loadRecruiterCandidates()">↻ Refresh</button>
                 </div>
 
-                <!-- Search Input Bar -->
-                <div class="search-bar-row">
-                    <div class="search-input-wrapper">
-                        <span class="search-icon">🔍</span>
-                        <input type="text" id="candidateSearchInput" oninput="filterCandidates(this.value)" placeholder="Search by name, skill (e.g. Spring Boot, Docker), or headline...">
-                    </div>
+                <div style="margin-bottom: 1.25rem;">
+                    <input type="text" id="candidateSearchInput" oninput="filterCandidates(this.value)" placeholder="Search by name, headline, or skill (e.g. Java, Docker)...">
                 </div>
 
-                <!-- LOADING SKELETON -->
-                <div id="recruiterSkeleton">
-                    <div class="skeleton-block skeleton-row" style="height: 50px;"></div>
-                    <div class="skeleton-block skeleton-row" style="height: 50px;"></div>
-                    <div class="skeleton-block skeleton-row" style="height: 50px;"></div>
-                </div>
-
-                <!-- DIRECTORY ERROR BANNER -->
-                <div id="recruiterErrorBanner" class="alert-banner alert-error" style="display: none;">
-                    <span>Failed to retrieve candidate directory from server.</span>
-                    <button class="btn-outline btn-sm" style="color:#e11d48; border-color:#fecdd3;" onclick="loadRecruiterCandidates()">Retry</button>
-                </div>
-
-                <!-- DIRECTORY EMPTY STATE -->
-                <div id="recruiterEmptyState" class="empty-state-box" style="display: none;">
-                    <div class="empty-state-icon">👥</div>
-                    <h3 class="empty-state-title">No candidate profiles found</h3>
-                    <p class="empty-state-desc" id="recruiterEmptyDesc">No candidates have registered or created profiles yet.</p>
-                </div>
-
-                <!-- DIRECTORY TABLE -->
                 <div id="recruiterTableContainer" style="display: none; overflow-x: auto;">
-                    <table class="candidate-table">
+                    <table class="data-table">
                         <thead>
                             <tr>
                                 <th>Candidate</th>
                                 <th>Headline & Location</th>
                                 <th>Skills</th>
-                                <th>Curriculum Vitae</th>
+                                <th>CV</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody id="candidateTableBody">
-                            <!-- Populated dynamically -->
+                            <!-- Populated Dynamically -->
                         </tbody>
                     </table>
                 </div>
@@ -1024,8 +917,102 @@
 
     </main>
 
-    <!-- CANDIDATE DETAIL POPUP MODAL -->
-    <div id="candidateDetailModal" class="modal-overlay" onclick="handleModalOverlayClick(event)">
+    <!-- MODAL 1: APPLY FOR JOB MODAL (Candidate) -->
+    <div id="applyJobModal" class="modal-overlay" onclick="handleApplyModalOverlayClick(event)">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <h3 class="card-title" id="applyModalJobTitle">Apply for Position</h3>
+                    <span class="card-caption" id="applyModalJobDept">Department & Location</span>
+                </div>
+                <button class="btn-text" onclick="closeApplyModal()">✕</button>
+            </div>
+            <form onsubmit="handleSubmitApplication(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="applyModalJobId">
+                    <div style="margin-bottom: 1rem;">
+                        <label class="form-label" for="applyCoverLetter">Cover Letter & Candidate Notes</label>
+                        <textarea id="applyCoverLetter" style="min-height: 140px;" placeholder="Highlight why your skills and background make you a strong fit for this role..."></textarea>
+                    </div>
+                    <div style="font-size: 0.8rem; color: var(--slate-500); background: var(--slate-50); padding: 0.75rem; border-radius: 6px;">
+                        📌 <strong>Note:</strong> Your active candidate profile and attached CV will be automatically included with this application.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-outline btn-sm" onclick="closeApplyModal()">Cancel</button>
+                    <button type="submit" id="btnSubmitApplication" class="btn-action btn-sm">
+                        <span>Submit Application</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: RECRUITER STATUS UPDATE MODAL -->
+    <div id="updateStatusModal" class="modal-overlay" onclick="handleStatusModalOverlayClick(event)">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <h3 class="card-title">Update Application Status</h3>
+                    <span class="card-caption" id="updateStatusModalSub">Candidate Name · Position</span>
+                </div>
+                <button class="btn-text" onclick="closeStatusModal()">✕</button>
+            </div>
+            <form onsubmit="handleSaveStatusUpdate(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="statusModalAppId">
+                    <div style="margin-bottom: 1rem;">
+                        <label class="form-label" for="selectNewStatus">Application Status</label>
+                        <select id="selectNewStatus">
+                            <option value="SUBMITTED">SUBMITTED</option>
+                            <option value="UNDER_REVIEW">UNDER_REVIEW</option>
+                            <option value="SHORTLISTED">SHORTLISTED</option>
+                            <option value="INTERVIEW_SCHEDULED">INTERVIEW_SCHEDULED</option>
+                            <option value="HIRED">HIRED</option>
+                            <option value="REJECTED">REJECTED</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label class="form-label" for="statusRecruiterNotes">Recruiter Feedback / Notes</label>
+                        <textarea id="statusRecruiterNotes" style="min-height: 100px;" placeholder="Optional feedback or interview details..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-outline btn-sm" onclick="closeStatusModal()">Cancel</button>
+                    <button type="submit" id="btnSaveStatus" class="btn-action btn-sm">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 3: APPLICATION DETAIL / COVER LETTER MODAL -->
+    <div id="applicationDetailModal" class="modal-overlay" onclick="handleDetailModalOverlayClick(event)">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <h3 class="card-title" id="detailModalTitle">Application Record</h3>
+                    <span class="card-caption" id="detailModalSubtitle">Candidate & Position</span>
+                </div>
+                <button class="btn-text" onclick="closeDetailModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 1rem;">
+                    <span class="card-caption" style="display:block; margin-bottom:4px; font-weight:700;">COVER LETTER</span>
+                    <p id="detailModalCoverLetter" style="font-size:0.875rem; color:var(--slate-800); line-height:1.6; white-space:pre-line; background:var(--slate-50); padding:1rem; border-radius:8px;">--</p>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <span class="card-caption" style="display:block; margin-bottom:4px; font-weight:700;">RECRUITER FEEDBACK NOTES</span>
+                    <p id="detailModalNotes" style="font-size:0.875rem; color:var(--slate-700); background:var(--slate-50); padding:0.75rem; border-radius:8px;">None recorded.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline btn-sm" onclick="closeDetailModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 4: CANDIDATE PROFILE INSPECTION MODAL -->
+    <div id="candidateDetailModal" class="modal-overlay" onclick="handleCandidateModalOverlayClick(event)">
         <div class="modal-card">
             <div class="modal-header">
                 <div>
@@ -1035,38 +1022,30 @@
                 <button class="btn-text" onclick="closeCandidateModal()">✕</button>
             </div>
             <div class="modal-body">
-                <div class="modal-section">
-                    <div class="modal-section-title">Contact & Location</div>
-                    <div style="font-size: 0.875rem; color: var(--slate-700);">
-                        <p id="modalLocation">📍 Location: </p>
-                        <p id="modalPhone" style="margin-top: 4px;">📞 Phone: </p>
-                    </div>
+                <div style="margin-bottom: 1rem;">
+                    <span class="card-caption" style="font-weight:700; display:block; margin-bottom:4px;">CONTACT & LOCATION</span>
+                    <p id="modalLocation" style="font-size:0.85rem; color:var(--slate-700);">📍 Remote</p>
+                    <p id="modalPhone" style="font-size:0.85rem; color:var(--slate-700); margin-top:2px;">📞 Not provided</p>
                 </div>
-
-                <div class="modal-section">
-                    <div class="modal-section-title">Career Summary</div>
-                    <p id="modalSummary" style="font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; white-space: pre-line;">--</p>
+                <div style="margin-bottom: 1rem;">
+                    <span class="card-caption" style="font-weight:700; display:block; margin-bottom:4px;">CAREER SUMMARY</span>
+                    <p id="modalSummary" style="font-size:0.875rem; color:var(--slate-800); line-height:1.6; white-space:pre-line;">--</p>
                 </div>
-
-                <div class="modal-section">
-                    <div class="modal-section-title">Technical Skills</div>
+                <div style="margin-bottom: 1rem;">
+                    <span class="card-caption" style="font-weight:700; display:block; margin-bottom:4px;">TECHNICAL SKILLS</span>
                     <div id="modalSkillsCloud" class="skills-tag-cloud"></div>
                 </div>
-
-                <div class="modal-section">
-                    <div class="modal-section-title">Work Experience</div>
-                    <p id="modalExperience" style="font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; white-space: pre-line; background: var(--slate-50); padding: 0.75rem; border-radius: 6px;">--</p>
+                <div style="margin-bottom: 1rem;">
+                    <span class="card-caption" style="font-weight:700; display:block; margin-bottom:4px;">WORK EXPERIENCE</span>
+                    <p id="modalExperience" style="font-size:0.85rem; color:var(--slate-800); line-height:1.6; white-space:pre-line; background:var(--slate-50); padding:0.75rem; border-radius:6px;">--</p>
                 </div>
-
-                <div class="modal-section">
-                    <div class="modal-section-title">Education</div>
-                    <p id="modalEducation" style="font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; white-space: pre-line; background: var(--slate-50); padding: 0.75rem; border-radius: 6px;">--</p>
+                <div>
+                    <span class="card-caption" style="font-weight:700; display:block; margin-bottom:4px;">EDUCATION</span>
+                    <p id="modalEducation" style="font-size:0.85rem; color:var(--slate-800); line-height:1.6; white-space:pre-line; background:var(--slate-50); padding:0.75rem; border-radius:6px;">--</p>
                 </div>
             </div>
             <div class="modal-footer">
-                <a id="modalResumeDownloadBtn" href="#" class="btn-action btn-sm" target="_blank" style="display: none;">
-                    <span>📥 Download CV</span>
-                </a>
+                <a id="modalResumeDownloadBtn" href="#" class="btn-action btn-sm" target="_blank" style="display: none;">📥 Download CV</a>
                 <button class="btn-outline btn-sm" onclick="closeCandidateModal()">Close</button>
             </div>
         </div>
@@ -1074,6 +1053,9 @@
 
     <script>
         let currentUser = null;
+        let activeJobsList = [];
+        let myApplicationsList = [];
+        let allPipelineApplications = [];
         let allCandidateProfiles = [];
 
         function showAlert(msg, isSuccess = true) {
@@ -1106,18 +1088,16 @@
 
                 if (role === 'ADMIN') {
                     roleBadge.className = 'role-tag role-admin';
+                    document.getElementById('candidateWorkspace').style.display = 'none';
+                    document.getElementById('recruiterWorkspace').style.display = 'block';
+                    setupRecruiterHub(user, role);
                 } else if (role === 'RECRUITER') {
                     roleBadge.className = 'role-tag role-recruiter';
-                } else {
-                    roleBadge.className = 'role-tag role-candidate';
-                }
-
-                // Role-based view switching
-                if (role === 'RECRUITER' || role === 'ADMIN') {
                     document.getElementById('candidateWorkspace').style.display = 'none';
                     document.getElementById('recruiterWorkspace').style.display = 'block';
                     setupRecruiterHub(user, role);
                 } else {
+                    roleBadge.className = 'role-tag role-candidate';
                     document.getElementById('candidateWorkspace').style.display = 'block';
                     document.getElementById('recruiterWorkspace').style.display = 'none';
                     setupCandidateWorkspace(user);
@@ -1127,49 +1107,32 @@
             }
         }
 
-        // ==========================================
+        // =========================================================
         // 1. CANDIDATE WORKSPACE LOGIC
-        // ==========================================
+        // =========================================================
         function setupCandidateWorkspace(user) {
             const displayName = user.firstName ? `${user.firstName} ${user.lastName}` : user.username;
             document.getElementById('heroName').textContent = displayName;
             const initials = (user.firstName ? user.firstName[0] : '') + (user.lastName ? user.lastName[0] : (user.username ? user.username[0] : 'C'));
             document.getElementById('heroAvatar').textContent = initials.toUpperCase();
+
             loadCandidateProfile();
+            loadMyApplications();
+            loadActiveJobs();
         }
 
         async function loadCandidateProfile() {
-            const skeleton = document.getElementById('candidateSkeleton');
-            const emptyState = document.getElementById('candidateEmptyState');
-            const form = document.getElementById('candidateProfileForm');
-            const errorBanner = document.getElementById('candidateErrorBanner');
-
-            skeleton.style.display = 'block';
-            emptyState.style.display = 'none';
-            form.style.display = 'none';
-            errorBanner.style.display = 'none';
-
             try {
                 const res = await fetch('/api/candidate/profile/me');
-                skeleton.style.display = 'none';
-
                 if (res.ok) {
                     const data = await res.json();
-                    populateForm(data);
-                    form.style.display = 'block';
+                    populateProfileForm(data);
                     updateResumeDisplay(data);
-                } else if (res.status === 404) {
-                    emptyState.style.display = 'block';
-                } else {
-                    errorBanner.style.display = 'flex';
                 }
-            } catch (err) {
-                skeleton.style.display = 'none';
-                errorBanner.style.display = 'flex';
-            }
+            } catch (e) {}
         }
 
-        function populateForm(data) {
+        function populateProfileForm(data) {
             document.getElementById('headline').value = data.headline || '';
             document.getElementById('heroHeadlineDisplay').textContent = data.headline || 'No headline set yet';
             document.getElementById('phone').value = data.phone || '';
@@ -1197,16 +1160,6 @@
                 badge.textContent = skill;
                 container.appendChild(badge);
             });
-        }
-
-        function showProfileFormWithSample() {
-            document.getElementById('candidateEmptyState').style.display = 'none';
-            document.getElementById('candidateProfileForm').style.display = 'block';
-            document.getElementById('headline').value = 'Software Engineer | Backend & Cloud Systems';
-            document.getElementById('skills').value = 'Java, Spring Boot, PostgreSQL, Docker, Microservices, Git';
-            renderSkillChips('Java, Spring Boot, PostgreSQL, Docker, Microservices, Git');
-            document.getElementById('location').value = 'San Francisco, CA (Open to Remote)';
-            document.getElementById('summary').focus();
         }
 
         function updateResumeDisplay(data) {
@@ -1252,11 +1205,11 @@
 
                 if (res.ok) {
                     const saved = await res.json();
-                    populateForm(saved);
+                    populateProfileForm(saved);
                     showAlert('Profile credentials saved successfully.', true);
                 } else {
                     const err = await res.json().catch(() => ({}));
-                    showAlert(err.message || 'Failed to save profile changes.', false);
+                    showAlert(err.message || 'Failed to save profile.', false);
                 }
             } catch (err) {
                 showAlert('Network error while saving profile.', false);
@@ -1287,7 +1240,7 @@
                     showAlert(`Resume "${updated.resumeFileName}" attached to profile.`, true);
                 } else {
                     const err = await res.json().catch(() => ({}));
-                    showAlert(err.message || 'File upload failed. Ensure the file is PDF or DOCX under 5MB.', false);
+                    showAlert(err.message || 'Upload failed. File must be PDF or DOCX under 5MB.', false);
                 }
             } catch (err) {
                 showAlert('Network error during file upload.', false);
@@ -1296,15 +1249,219 @@
             }
         }
 
-        // ==========================================
-        // 2. RECRUITER & ADMIN TALENT HUB LOGIC
-        // ==========================================
+        // =========================================================
+        // CANDIDATE: JOBS & APPLICATIONS
+        // =========================================================
+        async function loadActiveJobs() {
+            const skeleton = document.getElementById('jobsLoadingSkeleton');
+            const grid = document.getElementById('jobsGrid');
+            const emptyBox = document.getElementById('jobsEmptyState');
+
+            skeleton.style.display = 'block';
+            grid.style.display = 'none';
+            emptyBox.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/jobs/active');
+                skeleton.style.display = 'none';
+
+                if (res.ok) {
+                    activeJobsList = await res.json();
+                    renderJobsGrid();
+                } else {
+                    emptyBox.style.display = 'block';
+                }
+            } catch (err) {
+                skeleton.style.display = 'none';
+                emptyBox.style.display = 'block';
+            }
+        }
+
+        function renderJobsGrid() {
+            const grid = document.getElementById('jobsGrid');
+            const emptyBox = document.getElementById('jobsEmptyState');
+            grid.innerHTML = '';
+
+            if (!activeJobsList || activeJobsList.length === 0) {
+                emptyBox.style.display = 'block';
+                return;
+            }
+
+            emptyBox.style.display = 'none';
+            grid.style.display = 'grid';
+
+            const appliedJobIds = new Set(myApplicationsList.map(a => a.jobId));
+
+            activeJobsList.forEach(job => {
+                const hasApplied = appliedJobIds.has(job.id);
+                const card = document.createElement('div');
+                card.className = 'job-card';
+
+                card.innerHTML = `
+                    <div>
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                            <div class="job-card-title">${job.title}</div>
+                            <span class="mini-pill" style="font-size:0.7rem;">${job.employmentType || 'Full-Time'}</span>
+                        </div>
+                        <div class="job-card-dept">🏢 ${job.department} · 📍 ${job.location}</div>
+                        <p class="job-card-desc">${job.description || 'No description provided.'}</p>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.75rem; border-top:1px solid var(--slate-200); padding-top:0.75rem;">
+                        <span style="font-size:0.75rem; color:var(--slate-400);">ID: #${job.id}</span>
+                        ${hasApplied ?
+                            `<span class="status-badge status-SUBMITTED" style="font-size:0.75rem;">Applied ✓</span>` :
+                            `<button class="btn-action btn-sm" onclick="openApplyModal(${job.id}, '${escapeHtml(job.title)}', '${escapeHtml(job.department)}')">Apply Now</button>`
+                        }
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        async function loadMyApplications() {
+            const skeleton = document.getElementById('myAppsSkeleton');
+            const container = document.getElementById('myAppsTableContainer');
+            const emptyBox = document.getElementById('myAppsEmptyState');
+
+            skeleton.style.display = 'block';
+            container.style.display = 'none';
+            emptyBox.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/applications/my-applications');
+                skeleton.style.display = 'none';
+
+                if (res.ok) {
+                    myApplicationsList = await res.json();
+                    renderMyApplicationsTable();
+                    renderJobsGrid(); // update applied status on job cards
+                } else {
+                    emptyBox.style.display = 'block';
+                }
+            } catch (err) {
+                skeleton.style.display = 'none';
+                emptyBox.style.display = 'block';
+            }
+        }
+
+        function renderMyApplicationsTable() {
+            const tbody = document.getElementById('myAppsTableBody');
+            const container = document.getElementById('myAppsTableContainer');
+            const emptyBox = document.getElementById('myAppsEmptyState');
+
+            tbody.innerHTML = '';
+
+            if (!myApplicationsList || myApplicationsList.length === 0) {
+                container.style.display = 'none';
+                emptyBox.style.display = 'block';
+                return;
+            }
+
+            emptyBox.style.display = 'none';
+            container.style.display = 'block';
+
+            myApplicationsList.forEach(app => {
+                const tr = document.createElement('tr');
+                const dateStr = app.appliedAt ? new Date(app.appliedAt).toLocaleDateString() : 'Recent';
+                const canWithdraw = (app.status !== 'WITHDRAWN' && app.status !== 'HIRED');
+
+                tr.innerHTML = `
+                    <td>
+                        <div style="font-weight:600; color:var(--slate-900);">${app.jobTitle}</div>
+                        <div style="font-size:0.75rem; color:var(--slate-400);">${app.jobDepartment} · ${app.jobLocation}</div>
+                    </td>
+                    <td>${dateStr}</td>
+                    <td><span class="status-badge status-${app.status}">${app.status}</span></td>
+                    <td style="font-size:0.8rem; color:var(--slate-600); max-width:220px;">
+                        ${app.recruiterNotes ? escapeHtml(app.recruiterNotes) : '<span style="color:var(--slate-400);">No feedback yet</span>'}
+                    </td>
+                    <td style="text-align: right;">
+                        <button class="btn-outline btn-sm" onclick="openApplicationDetail(${app.id})">Details</button>
+                        ${canWithdraw ?
+                            `<button class="btn-outline btn-sm btn-danger-sm" onclick="handleWithdrawApplication(${app.id})">Withdraw</button>` :
+                            `<span style="font-size:0.75rem; color:var(--slate-400); margin-left:6px;">Closed</span>`
+                        }
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function openApplyModal(jobId, jobTitle, jobDept) {
+            document.getElementById('applyModalJobId').value = jobId;
+            document.getElementById('applyModalJobTitle').textContent = `Apply: ${jobTitle}`;
+            document.getElementById('applyModalJobDept').textContent = jobDept;
+            document.getElementById('applyCoverLetter').value = '';
+            document.getElementById('applyJobModal').style.display = 'flex';
+        }
+
+        function closeApplyModal() {
+            document.getElementById('applyJobModal').style.display = 'none';
+        }
+
+        function handleApplyModalOverlayClick(e) {
+            if (e.target.id === 'applyJobModal') closeApplyModal();
+        }
+
+        async function handleSubmitApplication(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmitApplication');
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+
+            const jobId = document.getElementById('applyModalJobId').value;
+            const coverLetter = document.getElementById('applyCoverLetter').value.trim();
+
+            try {
+                const res = await fetch('/api/applications/apply', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ jobId: Number(jobId), coverLetter: coverLetter })
+                });
+
+                if (res.ok) {
+                    closeApplyModal();
+                    showAlert('Application submitted successfully!', true);
+                    loadMyApplications();
+                } else {
+                    const err = await res.json().catch(() => ({}));
+                    showAlert(err.message || 'Could not submit application. Ensure you have not already applied.', false);
+                }
+            } catch (err) {
+                showAlert('Network error submitting application.', false);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Submit Application';
+            }
+        }
+
+        async function handleWithdrawApplication(appId) {
+            if (!confirm('Are you sure you want to withdraw this application? This action cannot be undone.')) return;
+
+            try {
+                const res = await fetch(`/api/applications/${appId}/withdraw`, { method: 'PUT' });
+                if (res.ok) {
+                    showAlert('Application withdrawn successfully.', true);
+                    loadMyApplications();
+                } else {
+                    const err = await res.json().catch(() => ({}));
+                    showAlert(err.message || 'Failed to withdraw application.', false);
+                }
+            } catch (err) {
+                showAlert('Network error during withdrawal.', false);
+            }
+        }
+
+        // =========================================================
+        // 2. RECRUITER & ADMIN PIPELINE LOGIC
+        // =========================================================
         function setupRecruiterHub(user, role) {
             const displayName = user.firstName ? `${user.firstName} ${user.lastName}` : user.username;
             document.getElementById('recruiterHeroName').textContent = `${displayName} · ${role} Portal`;
             const initials = (user.firstName ? user.firstName[0] : '') + (user.lastName ? user.lastName[0] : (user.username ? user.username[0] : 'R'));
             const avatar = document.getElementById('recruiterHeroAvatar');
             avatar.textContent = initials.toUpperCase();
+
             if (role === 'ADMIN') {
                 avatar.className = 'big-avatar admin';
                 document.getElementById('recruiterRolePill').textContent = '⚡ System Administrator';
@@ -1312,110 +1469,239 @@
                 avatar.className = 'big-avatar recruiter';
                 document.getElementById('recruiterRolePill').textContent = '🛡️ Hiring Recruiter';
             }
+
+            loadRecruiterJobsForFilter();
+            loadRecruiterApplications();
             loadRecruiterCandidates();
         }
 
-        async function loadRecruiterCandidates() {
-            const skeleton = document.getElementById('recruiterSkeleton');
-            const tableContainer = document.getElementById('recruiterTableContainer');
-            const emptyState = document.getElementById('recruiterEmptyState');
-            const errorBanner = document.getElementById('recruiterErrorBanner');
+        async function loadRecruiterJobsForFilter() {
+            try {
+                const res = await fetch('/api/jobs/active');
+                if (res.ok) {
+                    const jobs = await res.json();
+                    document.getElementById('statActiveJobs').textContent = jobs.length;
+                    const select = document.getElementById('pipelineJobFilter');
+                    select.innerHTML = '<option value="">All Vacancies</option>';
+                    jobs.forEach(j => {
+                        const opt = document.createElement('option');
+                        opt.value = j.id;
+                        opt.textContent = `${j.title} (${j.department})`;
+                        select.appendChild(opt);
+                    });
+                }
+            } catch (e) {}
+        }
+
+        async function loadRecruiterApplications() {
+            const skeleton = document.getElementById('pipelineSkeleton');
+            const container = document.getElementById('pipelineTableContainer');
+            const emptyBox = document.getElementById('pipelineEmptyState');
 
             skeleton.style.display = 'block';
-            tableContainer.style.display = 'none';
-            emptyState.style.display = 'none';
-            errorBanner.style.display = 'none';
+            container.style.display = 'none';
+            emptyBox.style.display = 'none';
 
             try {
-                const res = await fetch('/api/candidate/profile');
+                const res = await fetch('/api/applications');
                 skeleton.style.display = 'none';
 
                 if (res.ok) {
-                    allCandidateProfiles = await res.json();
-                    renderCandidateMetrics(allCandidateProfiles);
-                    renderCandidateTable(allCandidateProfiles);
+                    allPipelineApplications = await res.json();
+                    document.getElementById('statTotalApplications').textContent = allPipelineApplications.length;
+                    renderPipelineTable(allPipelineApplications);
                 } else {
-                    errorBanner.style.display = 'flex';
+                    emptyBox.style.display = 'block';
                 }
             } catch (err) {
                 skeleton.style.display = 'none';
-                errorBanner.style.display = 'flex';
+                emptyBox.style.display = 'block';
             }
         }
 
-        function renderCandidateMetrics(profiles) {
-            document.getElementById('statTotalCandidates').textContent = profiles.length;
-            const withResumes = profiles.filter(p => p.resumeFileName && p.resumeFileName.length > 0).length;
-            document.getElementById('statResumesAttached').textContent = withResumes;
-        }
-
-        function renderCandidateTable(profiles) {
-            const tbody = document.getElementById('candidateTableBody');
-            const tableContainer = document.getElementById('recruiterTableContainer');
-            const emptyState = document.getElementById('recruiterEmptyState');
+        function renderPipelineTable(apps) {
+            const tbody = document.getElementById('pipelineTableBody');
+            const container = document.getElementById('pipelineTableContainer');
+            const emptyBox = document.getElementById('pipelineEmptyState');
 
             tbody.innerHTML = '';
 
-            if (!profiles || profiles.length === 0) {
-                tableContainer.style.display = 'none';
-                emptyState.style.display = 'block';
+            if (!apps || apps.length === 0) {
+                container.style.display = 'none';
+                emptyBox.style.display = 'block';
                 return;
             }
 
-            tableContainer.style.display = 'block';
-            emptyState.style.display = 'none';
+            emptyBox.style.display = 'none';
+            container.style.display = 'block';
 
-            profiles.forEach(candidate => {
+            apps.forEach(app => {
                 const tr = document.createElement('tr');
+                const initial = (app.candidateUsername ? app.candidateUsername[0] : 'C').toUpperCase();
+                const dateStr = app.appliedAt ? new Date(app.appliedAt).toLocaleDateString() : 'Recent';
 
-                // 1. Candidate Name & Avatar
-                const initial = (candidate.username ? candidate.username[0] : 'C').toUpperCase();
-                const nameDisplay = candidate.username;
-
-                // 2. Skills Chips
-                let skillsHtml = '';
-                if (candidate.skills && candidate.skills.length > 0) {
-                    const topSkills = Array.from(candidate.skills).slice(0, 3);
-                    skillsHtml = topSkills.map(s => `<span class="skill-badge" style="font-size:0.7rem;">${s}</span>`).join(' ');
-                    if (candidate.skills.length > 3) {
-                        skillsHtml += ` <span style="font-size:0.7rem; color:var(--slate-400);">+${candidate.skills.length - 3}</span>`;
-                    }
+                let cvHtml = '';
+                if (app.resumeFileName) {
+                    cvHtml = `<a href="/api/candidate/profile/${app.candidateId}/resume" target="_blank" class="btn-outline btn-sm">📄 ${escapeHtml(app.resumeFileName)}</a>`;
                 } else {
-                    skillsHtml = '<span style="color:var(--slate-400); font-size:0.75rem;">None listed</span>';
-                }
-
-                // 3. Resume link or badge
-                let resumeHtml = '';
-                if (candidate.resumeFileName) {
-                    resumeHtml = `
-                        <a href="/api/candidate/profile/${candidate.id}/resume" target="_blank" class="btn-outline btn-sm" style="display:inline-flex; align-items:center; gap:4px;">
-                            <span>📄 ${candidate.resumeFileName}</span>
-                        </a>
-                    `;
-                } else {
-                    resumeHtml = '<span class="mini-pill" style="color:var(--slate-400);">No CV</span>';
+                    cvHtml = `<span style="font-size:0.75rem; color:var(--slate-400);">No CV</span>`;
                 }
 
                 tr.innerHTML = `
                     <td>
-                        <div class="candidate-profile-cell">
-                            <div class="table-avatar">${initial}</div>
+                        <div style="display:flex; align-items:center; gap:0.75rem;">
+                            <div class="avatar-circle" style="width:32px; height:32px; font-size:0.8rem; background:linear-gradient(135deg,#334155,#0f172a);">${initial}</div>
                             <div>
-                                <div class="candidate-name">${nameDisplay}</div>
-                                <div class="candidate-username">ID: #${candidate.id}</div>
+                                <div style="font-weight:600; color:var(--slate-900);">${app.candidateFullName || app.candidateUsername}</div>
+                                <div style="font-size:0.75rem; color:var(--slate-400);">@${app.candidateUsername} · ${app.candidateEmail || ''}</div>
                             </div>
                         </div>
                     </td>
                     <td>
-                        <div style="font-weight:500; color:var(--slate-800); max-width:280px;">${candidate.headline || 'No headline'}</div>
-                        <div style="font-size:0.75rem; color:var(--slate-400); margin-top:2px;">📍 ${candidate.location || 'Remote'}</div>
+                        <div style="font-weight:600; color:var(--slate-800);">${app.jobTitle}</div>
+                        <div style="font-size:0.75rem; color:var(--slate-400);">${app.jobDepartment}</div>
+                    </td>
+                    <td style="font-size:0.8rem; color:var(--slate-600);">${dateStr}</td>
+                    <td>${cvHtml}</td>
+                    <td>
+                        <span class="status-badge status-${app.status}">${app.status}</span>
+                    </td>
+                    <td style="text-align: right;">
+                        <button class="btn-outline btn-sm" onclick="openApplicationDetail(${app.id})">Letter</button>
+                        <button class="btn-action btn-sm" onclick="openStatusUpdateModal(${app.id}, '${escapeHtml(app.candidateUsername)}', '${escapeHtml(app.jobTitle)}', '${app.status}', '${escapeHtml(app.recruiterNotes || '')}')">Status</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterPipelineApplications(query) {
+            const q = query.toLowerCase().trim();
+            const jobId = document.getElementById('pipelineJobFilter').value;
+
+            let filtered = allPipelineApplications;
+            if (jobId) {
+                filtered = filtered.filter(a => String(a.jobId) === String(jobId));
+            }
+            if (q) {
+                filtered = filtered.filter(a => {
+                    const name = (a.candidateFullName || '').toLowerCase();
+                    const username = (a.candidateUsername || '').toLowerCase();
+                    const title = (a.jobTitle || '').toLowerCase();
+                    return name.includes(q) || username.includes(q) || title.includes(q);
+                });
+            }
+            renderPipelineTable(filtered);
+        }
+
+        function filterPipelineByJob(jobId) {
+            const q = document.getElementById('pipelineSearchInput').value;
+            filterPipelineApplications(q);
+        }
+
+        function openStatusUpdateModal(appId, candidateName, jobTitle, currentStatus, currentNotes) {
+            document.getElementById('statusModalAppId').value = appId;
+            document.getElementById('updateStatusModalSub').textContent = `${candidateName} · ${jobTitle}`;
+            document.getElementById('selectNewStatus').value = currentStatus;
+            document.getElementById('statusRecruiterNotes').value = currentNotes || '';
+            document.getElementById('updateStatusModal').style.display = 'flex';
+        }
+
+        function closeStatusModal() {
+            document.getElementById('updateStatusModal').style.display = 'none';
+        }
+
+        function handleStatusModalOverlayClick(e) {
+            if (e.target.id === 'updateStatusModal') closeStatusModal();
+        }
+
+        async function handleSaveStatusUpdate(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnSaveStatus');
+            btn.disabled = true;
+            btn.textContent = 'Updating...';
+
+            const appId = document.getElementById('statusModalAppId').value;
+            const newStatus = document.getElementById('selectNewStatus').value;
+            const notes = document.getElementById('statusRecruiterNotes').value.trim();
+
+            try {
+                const res = await fetch(`/api/applications/${appId}/status`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus, recruiterNotes: notes })
+                });
+
+                if (res.ok) {
+                    closeStatusModal();
+                    showAlert('Application status updated successfully.', true);
+                    loadRecruiterApplications();
+                } else {
+                    const err = await res.json().catch(() => ({}));
+                    showAlert(err.message || 'Failed to update status.', false);
+                }
+            } catch (err) {
+                showAlert('Network error while updating status.', false);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Save Changes';
+            }
+        }
+
+        // =========================================================
+        // RECRUITER: CANDIDATE DIRECTORY
+        // =========================================================
+        async function loadRecruiterCandidates() {
+            const container = document.getElementById('recruiterTableContainer');
+            try {
+                const res = await fetch('/api/candidate/profile');
+                if (res.ok) {
+                    allCandidateProfiles = await res.json();
+                    document.getElementById('statTotalCandidates').textContent = allCandidateProfiles.length;
+                    renderCandidateTable(allCandidateProfiles);
+                }
+            } catch (e) {}
+        }
+
+        function renderCandidateTable(profiles) {
+            const tbody = document.getElementById('candidateTableBody');
+            const container = document.getElementById('recruiterTableContainer');
+            tbody.innerHTML = '';
+
+            if (!profiles || profiles.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+
+            container.style.display = 'block';
+
+            profiles.forEach(candidate => {
+                const tr = document.createElement('tr');
+                const initial = (candidate.username ? candidate.username[0] : 'C').toUpperCase();
+
+                let skillsHtml = '';
+                if (candidate.skills && candidate.skills.length > 0) {
+                    const topSkills = Array.from(candidate.skills).slice(0, 3);
+                    skillsHtml = topSkills.map(s => `<span class="skill-badge" style="font-size:0.7rem;">${escapeHtml(s)}</span>`).join(' ');
+                }
+
+                let cvHtml = candidate.resumeFileName ?
+                    `<a href="/api/candidate/profile/${candidate.id}/resume" target="_blank" class="btn-outline btn-sm">📄 CV</a>` :
+                    `<span style="color:var(--slate-400); font-size:0.75rem;">None</span>`;
+
+                tr.innerHTML = `
+                    <td>
+                        <div style="font-weight:600; color:var(--slate-900);">${escapeHtml(candidate.username)}</div>
+                        <div style="font-size:0.75rem; color:var(--slate-400);">ID: #${candidate.id}</div>
+                    </td>
+                    <td>
+                        <div style="font-weight:500; color:var(--slate-800);">${escapeHtml(candidate.headline || 'No headline')}</div>
+                        <div style="font-size:0.75rem; color:var(--slate-400);">📍 ${escapeHtml(candidate.location || 'Remote')}</div>
                     </td>
                     <td>${skillsHtml}</td>
-                    <td>${resumeHtml}</td>
+                    <td>${cvHtml}</td>
                     <td style="text-align: right;">
-                        <button class="btn-outline btn-sm btn-primary-sm" onclick="openCandidateModal(${candidate.id})">
-                            View Profile
-                        </button>
+                        <button class="btn-outline btn-sm" onclick="openCandidateModal(${candidate.id})">Profile</button>
                     </td>
                 `;
                 tbody.appendChild(tr);
@@ -1431,11 +1717,32 @@
             const filtered = allCandidateProfiles.filter(c => {
                 const headline = (c.headline || '').toLowerCase();
                 const username = (c.username || '').toLowerCase();
-                const location = (c.location || '').toLowerCase();
                 const skills = (c.skills ? Array.from(c.skills).join(' ') : '').toLowerCase();
-                return headline.includes(q) || username.includes(q) || location.includes(q) || skills.includes(q);
+                return headline.includes(q) || username.includes(q) || skills.includes(q);
             });
             renderCandidateTable(filtered);
+        }
+
+        // =========================================================
+        // COMMON MODAL HELPERS
+        // =========================================================
+        function openApplicationDetail(appId) {
+            let app = myApplicationsList.find(a => a.id === appId) || allPipelineApplications.find(a => a.id === appId);
+            if (!app) return;
+
+            document.getElementById('detailModalTitle').textContent = `Application #${app.id}: ${app.jobTitle}`;
+            document.getElementById('detailModalSubtitle').textContent = `Applicant: ${app.candidateFullName || app.candidateUsername} · Status: ${app.status}`;
+            document.getElementById('detailModalCoverLetter').textContent = app.coverLetter || 'No cover letter submitted.';
+            document.getElementById('detailModalNotes').textContent = app.recruiterNotes || 'No notes recorded.';
+            document.getElementById('applicationDetailModal').style.display = 'flex';
+        }
+
+        function closeDetailModal() {
+            document.getElementById('applicationDetailModal').style.display = 'none';
+        }
+
+        function handleDetailModalOverlayClick(e) {
+            if (e.target.id === 'applicationDetailModal') closeDetailModal();
         }
 
         function openCandidateModal(candidateId) {
@@ -1450,7 +1757,6 @@
             document.getElementById('modalExperience').textContent = candidate.experience || 'No work experience listed.';
             document.getElementById('modalEducation').textContent = candidate.education || 'No education listed.';
 
-            // Render modal skill chips
             const skillsCloud = document.getElementById('modalSkillsCloud');
             skillsCloud.innerHTML = '';
             if (candidate.skills && candidate.skills.length > 0) {
@@ -1464,7 +1770,6 @@
                 skillsCloud.innerHTML = '<span style="color:var(--slate-400); font-size:0.8rem;">No skills listed</span>';
             }
 
-            // Resume button in modal
             const resumeBtn = document.getElementById('modalResumeDownloadBtn');
             if (candidate.resumeFileName) {
                 resumeBtn.href = `/api/candidate/profile/${candidate.id}/resume`;
@@ -1480,15 +1785,20 @@
             document.getElementById('candidateDetailModal').style.display = 'none';
         }
 
-        function handleModalOverlayClick(e) {
-            if (e.target.id === 'candidateDetailModal') {
-                closeCandidateModal();
-            }
+        function handleCandidateModalOverlayClick(e) {
+            if (e.target.id === 'candidateDetailModal') closeCandidateModal();
         }
 
-        // ==========================================
-        // 3. COMMON LOGOUT
-        // ==========================================
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
         async function handleLogout() {
             try {
                 await fetch('/api/auth/logout', { method: 'POST' });
