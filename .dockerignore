@@ -1,0 +1,12 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.git/
+.gitignore
+.github/
+.idea/
+.vscode/
+*.iml
+*.log
+uploads/
+.DS_Store
+Thumbs.db

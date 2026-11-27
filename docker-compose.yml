@@ -1,0 +1,64 @@
+services:
+  # ============================================================================
+  # 1. PostgreSQL Database Service
+  # ============================================================================
+  postgres:
+    image: postgres:16-alpine
+    container_name: hiretrack-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hiretrack
+      POSTGRES_USER: hiretrack_user
+      POSTGRES_PASSWORD: hiretrack_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hiretrack_user -d hiretrack"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - hiretrack-network
+
+  # ============================================================================
+  # 2. HireTrack Spring Boot Application Service
+  # ============================================================================
+  hiretrack-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hiretrack-app
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/hiretrack
+      SPRING_DATASOURCE_USERNAME: hiretrack_user
+      SPRING_DATASOURCE_PASSWORD: hiretrack_pass
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
+    volumes:
+      - resume_uploads:/app/uploads/resumes
+    networks:
+      - hiretrack-network
+
+# ==============================================================================
+# Persistent Named Volumes & Network Definition
+# ==============================================================================
+volumes:
+  postgres_data:
+    name: hiretrack_postgres_data
+  resume_uploads:
+    name: hiretrack_resume_uploads
+
+networks:
+  hiretrack-network:
+    name: hiretrack-network
+    driver: bridge
