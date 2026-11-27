@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - HireTrack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-500: #64748b;
+            --slate-400: #94a3b8;
+            --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            --rose-500: #f43f5e;
+            --rose-50: #fff1f2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #fbfcfd;
+            background-image: radial-gradient(#e2e8f0 0.75px, transparent 0.75px);
+            background-size: 20px 20px;
+            color: var(--slate-900);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 380px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 1.75rem;
+        }
+
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            color: var(--slate-900);
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            font-weight: 800;
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.15);
+        }
+
+        .auth-card {
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.85);
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 10px 28px -6px rgba(15, 23, 42, 0.04);
+        }
+
+        .form-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--slate-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .form-desc {
+            font-size: 0.825rem;
+            color: var(--slate-500);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--slate-700);
+        }
+
+        input {
+            width: 100%;
+            padding: 0.625rem 0.875rem;
+            font-size: 0.9rem;
+            color: var(--slate-900);
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            border-radius: 8px;
+            transition: all 0.15s ease;
+        }
+
+        input::placeholder {
+            color: var(--slate-400);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.6875rem 1rem;
+            background: var(--slate-900);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.15s ease;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-submit:hover {
+            background: #000000;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(15, 23, 42, 0.12);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .demo-pill {
+            background: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin-top: 1.25rem;
+            font-size: 0.775rem;
+            color: var(--slate-600);
+            line-height: 1.4;
+        }
+
+        .demo-pill strong {
+            color: var(--slate-800);
+        }
+
+        .error-banner {
+            background: var(--rose-50);
+            border: 1px solid #fecdd3;
+            color: var(--rose-500);
+            padding: 0.65rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            display: none;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.8125rem;
+            color: var(--slate-500);
+        }
+
+        .auth-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .spinner {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 2px solid white;
+            width: 14px;
+            height: 14px;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-container">
+        <div class="brand-header">
+            <a href="/login.html" class="brand-logo">
+                <div class="brand-icon">H</div>
+                <span>HireTrack</span>
+            </a>
+        </div>
+
+        <div class="auth-card">
+            <div id="errorBanner" class="error-banner">
+                <span id="errorMessage">Invalid credentials</span>
+            </div>
+
+            <h1 class="form-title">Sign in</h1>
+            <p class="form-desc">Enter your credentials to access your candidate space.</p>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="identifier">Username or Email</label>
+                    <input type="text" id="identifier" required placeholder="candidate" autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="••••••••" autocomplete="current-password">
+                </div>
+
+                <button type="submit" id="btnSubmit" class="btn-submit">
+                    <span id="btnText">Continue</span>
+                </button>
+            </form>
+
+            <div class="demo-pill">
+                <strong>Demo Hint:</strong> Use <code>candidate</code> / <code>candidate123</code> for the instant pre-populated candidate dashboard.
+            </div>
+        </div>
+
+        <div class="auth-footer">
+            Don't have an account? <a href="/register.html">Create one</a>
+        </div>
+    </div>
+
+    <script>
+        async function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmit');
+            const btnText = document.getElementById('btnText');
+            const errorBanner = document.getElementById('errorBanner');
+            const errorMsg = document.getElementById('errorMessage');
+
+            errorBanner.style.display = 'none';
+            btn.disabled = true;
+            btnText.innerHTML = '<span class="spinner"></span>';
+
+            const payload = {
+                usernameOrEmail: document.getElementById('identifier').value.trim(),
+                password: document.getElementById('password').value
+            };
+
+            try {
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    window.location.href = '/dashboard.html';
+                } else {
+                    const data = await res.json().catch(() => ({}));
+                    errorMsg.textContent = data.message || 'Invalid username or password.';
+                    errorBanner.style.display = 'block';
+                    btn.disabled = false;
+                    btnText.textContent = 'Continue';
+                }
+            } catch (err) {
+                errorMsg.textContent = 'Server unreachable. Please verify Spring Boot is running.';
+                errorBanner.style.display = 'block';
+                btn.disabled = false;
+                btnText.textContent = 'Continue';
+            }
+        }
+    </script>
+</body>
+</html>

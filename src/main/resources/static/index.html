@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HireTrack</title>
+    <script>
+        (async function() {
+            try {
+                const res = await fetch('/api/auth/me');
+                if (res.ok) {
+                    window.location.replace('/dashboard.html');
+                } else {
+                    window.location.replace('/login.html');
+                }
+            } catch (e) {
+                window.location.replace('/login.html');
+            }
+        })();
+    </script>
+</head>
+<body style="background:#f8fafc; display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif; color:#64748b;">
+    <p>Loading HireTrack...</p>
+</body>
+</html>
