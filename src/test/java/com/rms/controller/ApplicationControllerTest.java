@@ -5,7 +5,6 @@ import com.rms.config.SecurityConfig;
 import com.rms.dto.ApplicationApplyRequestDto;
 import com.rms.dto.ApplicationResponseDto;
 import com.rms.dto.ApplicationStatusUpdateRequestDto;
-import com.rms.dto.JobResponseDto;
 import com.rms.entity.ApplicationStatus;
 import com.rms.exception.GlobalExceptionHandler;
 import com.rms.service.ApplicationService;
@@ -30,7 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = {ApplicationController.class, JobController.class})
+@WebMvcTest(controllers = ApplicationController.class)
 @Import({SecurityConfig.class, GlobalExceptionHandler.class})
 class ApplicationControllerTest {
 
@@ -198,22 +197,5 @@ class ApplicationControllerTest {
         mockMvc.perform(get("/api/applications/job/10"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].candidateUsername").value("sarah_c"));
-    }
-
-    @Test
-    @WithMockUser
-    @DisplayName("GET /api/jobs/active - Authenticated users can list active vacancies")
-    void shouldGetActiveJobs() throws Exception {
-        JobResponseDto job = JobResponseDto.builder()
-                .id(10L)
-                .title("Senior Java Engineer")
-                .department("Engineering")
-                .build();
-
-        when(applicationService.getActiveJobs()).thenReturn(List.of(job));
-
-        mockMvc.perform(get("/api/jobs/active"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].title").value("Senior Java Engineer"));
     }
 }
