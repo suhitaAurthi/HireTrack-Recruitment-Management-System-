@@ -1300,17 +1300,17 @@
                 card.innerHTML = `
                     <div>
                         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                            <div class="job-card-title">${job.title}</div>
-                            <span class="mini-pill" style="font-size:0.7rem;">${job.employmentType || 'Full-Time'}</span>
+                            <div class="job-card-title">${escapeHtml(job.title)}</div>
+                            <span class="mini-pill" style="font-size:0.7rem;">${escapeHtml(job.employmentType || 'Full-Time')}</span>
                         </div>
-                        <div class="job-card-dept">🏢 ${job.department} · 📍 ${job.location}</div>
-                        <p class="job-card-desc">${job.description || 'No description provided.'}</p>
+                        <div class="job-card-dept">🏢 ${escapeHtml(job.department)} · 📍 ${escapeHtml(job.location)}</div>
+                        <p class="job-card-desc">${escapeHtml(job.description || 'No description provided.')}</p>
                     </div>
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.75rem; border-top:1px solid var(--slate-200); padding-top:0.75rem;">
                         <span style="font-size:0.75rem; color:var(--slate-400);">ID: #${job.id}</span>
                         ${hasApplied ?
                             `<span class="status-badge status-SUBMITTED" style="font-size:0.75rem;">Applied ✓</span>` :
-                            `<button class="btn-action btn-sm" onclick="openApplyModal(${job.id}, '${escapeHtml(job.title)}', '${escapeHtml(job.department)}')">Apply Now</button>`
+                            `<button class="btn-action btn-sm" onclick="openApplyModal(${job.id})">Apply Now</button>`
                         }
                     </div>
                 `;
@@ -1367,8 +1367,8 @@
 
                 tr.innerHTML = `
                     <td>
-                        <div style="font-weight:600; color:var(--slate-900);">${app.jobTitle}</div>
-                        <div style="font-size:0.75rem; color:var(--slate-400);">${app.jobDepartment} · ${app.jobLocation}</div>
+                        <div style="font-weight:600; color:var(--slate-900);">${escapeHtml(app.jobTitle)}</div>
+                        <div style="font-size:0.75rem; color:var(--slate-400);">${escapeHtml(app.jobDepartment)} · ${escapeHtml(app.jobLocation)}</div>
                     </td>
                     <td>${dateStr}</td>
                     <td><span class="status-badge status-${app.status}">${app.status}</span></td>
@@ -1387,10 +1387,12 @@
             });
         }
 
-        function openApplyModal(jobId, jobTitle, jobDept) {
+        function openApplyModal(jobId) {
+            const job = activeJobsList.find(j => j.id === jobId);
+            if (!job) return;
             document.getElementById('applyModalJobId').value = jobId;
-            document.getElementById('applyModalJobTitle').textContent = `Apply: ${jobTitle}`;
-            document.getElementById('applyModalJobDept').textContent = jobDept;
+            document.getElementById('applyModalJobTitle').textContent = `Apply: ${job.title}`;
+            document.getElementById('applyModalJobDept').textContent = job.department;
             document.getElementById('applyCoverLetter').value = '';
             document.getElementById('applyJobModal').style.display = 'flex';
         }
@@ -1558,8 +1560,8 @@
                         </div>
                     </td>
                     <td>
-                        <div style="font-weight:600; color:var(--slate-800);">${app.jobTitle}</div>
-                        <div style="font-size:0.75rem; color:var(--slate-400);">${app.jobDepartment}</div>
+                        <div style="font-weight:600; color:var(--slate-800);">${escapeHtml(app.jobTitle)}</div>
+                        <div style="font-size:0.75rem; color:var(--slate-400);">${escapeHtml(app.jobDepartment)}</div>
                     </td>
                     <td style="font-size:0.8rem; color:var(--slate-600);">${dateStr}</td>
                     <td>${cvHtml}</td>
@@ -1568,7 +1570,7 @@
                     </td>
                     <td style="text-align: right;">
                         <button class="btn-outline btn-sm" onclick="openApplicationDetail(${app.id})">Letter</button>
-                        <button class="btn-action btn-sm" onclick="openStatusUpdateModal(${app.id}, '${escapeHtml(app.candidateUsername)}', '${escapeHtml(app.jobTitle)}', '${app.status}', '${escapeHtml(app.recruiterNotes || '')}')">Status</button>
+                        <button class="btn-action btn-sm" onclick="openStatusUpdateModal(${app.id})">Status</button>
                     </td>
                 `;
                 tbody.appendChild(tr);
@@ -1599,11 +1601,13 @@
             filterPipelineApplications(q);
         }
 
-        function openStatusUpdateModal(appId, candidateName, jobTitle, currentStatus, currentNotes) {
+        function openStatusUpdateModal(appId) {
+            const app = allPipelineApplications.find(a => a.id === appId);
+            if (!app) return;
             document.getElementById('statusModalAppId').value = appId;
-            document.getElementById('updateStatusModalSub').textContent = `${candidateName} · ${jobTitle}`;
-            document.getElementById('selectNewStatus').value = currentStatus;
-            document.getElementById('statusRecruiterNotes').value = currentNotes || '';
+            document.getElementById('updateStatusModalSub').textContent = `${app.candidateUsername} · ${app.jobTitle}`;
+            document.getElementById('selectNewStatus').value = app.status;
+            document.getElementById('statusRecruiterNotes').value = app.recruiterNotes || '';
             document.getElementById('updateStatusModal').style.display = 'flex';
         }
 

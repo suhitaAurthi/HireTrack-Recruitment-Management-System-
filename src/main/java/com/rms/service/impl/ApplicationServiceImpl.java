@@ -3,7 +3,6 @@ package com.rms.service.impl;
 import com.rms.dto.ApplicationApplyRequestDto;
 import com.rms.dto.ApplicationResponseDto;
 import com.rms.dto.ApplicationStatusUpdateRequestDto;
-import com.rms.dto.JobResponseDto;
 import com.rms.entity.*;
 import com.rms.exception.DuplicateResourceException;
 import com.rms.exception.ResourceNotFoundException;
@@ -21,7 +20,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -148,34 +146,6 @@ public class ApplicationServiceImpl implements ApplicationService {
         Application updated = applicationRepository.save(application);
 
         return mapToDto(updated);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<JobResponseDto> getActiveJobs() {
-        return jobRepository.findByActiveTrueOrderByCreatedAtDesc()
-                .stream()
-                .map(j -> JobResponseDto.builder()
-                        .id(j.getId())
-                        .title(j.getTitle())
-                        .department(j.getDepartment())
-                        .location(j.getLocation())
-                        .employmentType(j.getEmploymentType())
-                        .description(j.getDescription())
-                        .requirements(j.getRequirements())
-                        .category(j.getCategory())
-                        .salaryMin(j.getSalaryMin())
-                        .salaryMax(j.getSalaryMax())
-                        .applicationDeadline(j.getApplicationDeadline())
-                        .openPositions(j.getOpenPositions())
-                        .educationRequirement(j.getEducationRequirement())
-                        .minExperienceYears(j.getMinExperienceYears())
-                        // Copy while the transaction is open: the entity's set is loaded lazily.
-                        .requiredSkills(new HashSet<>(j.getRequiredSkills()))
-                        .active(j.getActive())
-                        .createdAt(j.getCreatedAt())
-                        .build())
-                .toList();
     }
 
     private ApplicationResponseDto mapToDto(Application a) {

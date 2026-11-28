@@ -14,6 +14,8 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
 
     boolean existsByCandidateProfileIdAndJobId(Long candidateProfileId, Long jobId);
 
+    boolean existsByJobId(Long jobId);
+
     List<Application> findByCandidateProfileIdOrderByAppliedAtDesc(Long candidateProfileId);
 
     List<Application> findByJobIdOrderByAppliedAtDesc(Long jobId);
