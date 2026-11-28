@@ -20,6 +20,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -142,6 +144,14 @@ public class DataInitializer implements CommandLineRunner {
                     .employmentType("Full-Time")
                     .description("Lead the design and evolution of high-throughput distributed microservices on Spring Boot 3, Kubernetes, and PostgreSQL.")
                     .requirements("5+ years of Java/Spring ecosystem, RESTful API design, Docker/Kubernetes container orchestration, and relational database optimization.")
+                    .category("Software Engineering")
+                    .salaryMin(new BigDecimal("140000"))
+                    .salaryMax(new BigDecimal("175000"))
+                    .applicationDeadline(LocalDate.now().plusDays(30))
+                    .openPositions(2)
+                    .educationRequirement("B.Sc. in Computer Science or a related field")
+                    .minExperienceYears(5)
+                    .requiredSkills(new HashSet<>(Set.of("Java", "Spring Boot", "PostgreSQL", "Docker")))
                     .active(true)
                     .build());
 
@@ -152,6 +162,14 @@ public class DataInitializer implements CommandLineRunner {
                     .employmentType("Full-Time")
                     .description("Architect scalable cloud infrastructure, zero-downtime CI/CD deployment pipelines, and observability monitoring with Prometheus & Grafana.")
                     .requirements("Strong background in AWS/GCP, Terraform IaC, multi-cluster Kubernetes administration, and automated test pipelines.")
+                    .category("DevOps")
+                    .salaryMin(new BigDecimal("150000"))
+                    .salaryMax(new BigDecimal("185000"))
+                    .applicationDeadline(LocalDate.now().plusDays(45))
+                    .openPositions(1)
+                    .educationRequirement("B.Sc. in Computer Science or equivalent experience")
+                    .minExperienceYears(6)
+                    .requiredSkills(new HashSet<>(Set.of("Kubernetes", "AWS", "Terraform", "CI/CD")))
                     .active(true)
                     .build());
 

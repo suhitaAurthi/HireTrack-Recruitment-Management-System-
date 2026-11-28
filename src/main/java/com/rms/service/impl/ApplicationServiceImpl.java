@@ -21,6 +21,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -162,6 +163,15 @@ public class ApplicationServiceImpl implements ApplicationService {
                         .employmentType(j.getEmploymentType())
                         .description(j.getDescription())
                         .requirements(j.getRequirements())
+                        .category(j.getCategory())
+                        .salaryMin(j.getSalaryMin())
+                        .salaryMax(j.getSalaryMax())
+                        .applicationDeadline(j.getApplicationDeadline())
+                        .openPositions(j.getOpenPositions())
+                        .educationRequirement(j.getEducationRequirement())
+                        .minExperienceYears(j.getMinExperienceYears())
+                        // Copy while the transaction is open: the entity's set is loaded lazily.
+                        .requiredSkills(new HashSet<>(j.getRequiredSkills()))
                         .active(j.getActive())
                         .createdAt(j.getCreatedAt())
                         .build())
